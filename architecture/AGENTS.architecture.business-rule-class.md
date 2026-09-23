@@ -1,6 +1,20 @@
 # Arquitetura: Classe Dedicada por Regra de Negócio
 
-- Depende de: arquitetura em camadas e separação de responsabilidades do projeto aplicável.
+## Arquitetura base
+
+Esta norma pressupõe a topologia de camadas deste conjunto. Antes de aplicar
+suas regras, leia e aplique a base, mesmo na adoção isolada deste especialista.
+O caminho abaixo é relativo a este arquivo:
+
+- `AGENTS.architecture.layer-boundaries.md`
+
+As regras desta norma não ampliam as responsabilidades nem as dependências
+permitidas pela base. Camadas opcionais só devem existir quando necessárias
+às responsabilidades do projeto.
+
+## Regras
+
+- Depende de: arquitetura base indicada acima e separação de responsabilidades nela definida.
 - Objetivo: manter regras de negócio isoladas, legíveis, testáveis e substituíveis sem acúmulo de responsabilidades em classes genéricas.
 - Cada implementação de regra de negócio deve ficar em uma classe nova e dedicada àquela regra.
 - Quando houver um grupo coeso de regras de negócio relacionadas ao mesmo recurso, fluxo, entidade ou política, as classes dedicadas dessas regras devem ficar em um package dedicado dentro da camada de domínio.

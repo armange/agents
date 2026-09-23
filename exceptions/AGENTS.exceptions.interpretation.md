@@ -6,11 +6,11 @@
   a interpretação antes de ser formatada pelo canal de saída.
 - A interpretação de exceções não deve depender de HTTP, mensageria, jobs, CLI
   ou outro protocolo de transporte.
-- `ConstraintViolationsDto` e `ViolationDto` são o envelope padrão de
-  violações reutilizável entre canais de exposição; nenhum canal deve criar
-  envelope paralelo para representar as mesmas violações.
+- O envelope e o modelo de violações definidos pelo projeto devem ser
+  reutilizáveis entre canais de exposição; nenhum canal deve criar um envelope
+  paralelo para representar as mesmas violações.
 - Não crie ou mantenha estruturas intermediárias que dupliquem o envelope
-  padrão de violações, como `ValidationViolation`.
+  padrão de violações.
 - Interpretadores devem ser extensíveis, ordenados e especializados por tipo
   de exceção ou família de exceções.
 - Um interpretador pode reconhecer exceções encapsuladas em sua cadeia de

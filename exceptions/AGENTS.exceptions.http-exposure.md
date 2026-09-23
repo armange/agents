@@ -5,15 +5,14 @@
 - A fronteira HTTP deve capturar toda `Exception` que a alcançar, aplicar os
   interpretadores disponíveis e converter o resultado para o contrato
   canônico de erro.
-- Na exposição HTTP, use `ConstraintViolationsDto`, fornecido pela
-  `nexus-validation`, como envelope canônico de erro. Esse envelope é
-  reutilizável entre canais; HTTP apenas o adapta para sua resposta. Não use
-  JSON manual, `Map` genérico, `ProblemDetail` ou outro envelope paralelo,
-  salvo exceção explícita e documentada.
+- Na exposição HTTP, use o envelope canônico de erro definido pelo projeto.
+  Esse envelope deve ser reutilizável entre canais; HTTP apenas o adapta para
+  sua resposta. Não introduza um formato paralelo ao contrato adotado, salvo
+  exceção explícita e documentada.
 - A conversão para HTTP deve definir o status e construir as violações do
   envelope sem vazar detalhes técnicos de exceções não reconhecidas.
 - i18n e resolução de mensagens ocorrem exclusivamente nesta etapa de
-  exposição, para todos os idiomas suportados pelo Nexus Application.
+  exposição, para todos os idiomas suportados pela aplicação.
 - O HTTP deve reservar `404 Not Found` para endpoint ou path inexistente.
 - A ausência normal do recurso-alvo de uma consulta ou operação direta por ID
   não é falha de dados ou estado: deve retornar `204 No Content`, sem exceção
@@ -23,14 +22,15 @@
 
 ## Extensão e múltiplas violações
 
-- Conversores HTTP reutilizáveis devem ser implementados na
-  `nexus-validation`; conversores locais são permitidos apenas para erros
-  específicos do projeto e devem produzir o mesmo contrato canônico.
+- Conversores HTTP reutilizáveis devem ser implementados no componente
+  compartilhado de tratamento de erros adotado pelo projeto; conversores locais
+  são permitidos apenas para erros específicos e devem produzir o mesmo contrato
+  canônico.
 - Múltiplas violações devem ser acumuladas e expostas por uma única exceção;
-  no HTTP, elas retornam `422 Unprocessable Entity` em um único
-  `ConstraintViolationsDto` contendo todas as violações.
-- Quando o serviço já utilizar conversor compatível da `nexus-validation`, ele
-  deve ser reutilizado em vez de duplicado.
+  no HTTP, elas retornam `422 Unprocessable Entity` em um único envelope canônico
+  contendo todas as violações.
+- Quando o serviço já utilizar um conversor compatível, ele deve ser reutilizado
+  em vez de duplicado.
 
 ## Responsabilidade do BFF
 

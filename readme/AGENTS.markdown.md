@@ -23,7 +23,7 @@
 - O texto do link de retorno deve permanecer discreto e pequeno, sem competir com o titulo da secao, para servir apenas como atalho de navegacao.
 - Titulos devem manter grafia natural com acentuacao quando isso melhorar a leitura.
 - Se a acentuacao for usada em titulos, sumario ou anchors, a documentacao deve preservar essa igualdade de texto e evitar que a escolha da grafia quebre os links.
-- A organizacao do `README.md` do `nexus-auth-service` deve ser usada como referencia principal para documentos Markdown operacionais extensos.
+- Documentos Markdown operacionais extensos devem seguir a estrutura desta norma e o modelo de documentacao adotado pelo projeto, quando houver.
 
 ## Conteudo minimo por tipo de projeto
 
@@ -52,7 +52,7 @@
 ## Configuracoes
 
 - Configuracoes documentadas devem informar nome, finalidade e valor padrao quando existir.
-- Quando o documento tratar de configuracoes do dominio Nexus, aplique `../config/AGENTS.config.md`, incluindo o namespace `nexus`.
+- Quando o documento tratar de configuracoes proprias da aplicacao, aplique `../config/AGENTS.config.md`, respeitando o namespace definido pelo projeto.
 - Variaveis de ambiente devem ser listadas com efeito pratico e contexto de uso.
 
 ## Atualizacao obrigatoria
@@ -67,4 +67,4 @@
 - Servicos HTTP devem ser comparados prioritariamente com outros servicos HTTP.
 - Bibliotecas devem ser comparadas prioritariamente com outras bibliotecas.
 - Ferramentas auxiliares devem ser comparadas prioritariamente com outras ferramentas auxiliares.
-- O README do Auth continua sendo a referencia principal para documentacao operacional extensa de servicos, e serve como modelo de estrutura para documentos Markdown operacionais extensos.
+- Ao reutilizar um modelo de documentacao, adapte-o ao tipo e as responsabilidades do projeto de destino, sem importar configuracoes, endpoints ou dependencias de outro projeto.

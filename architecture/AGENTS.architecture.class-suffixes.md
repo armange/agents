@@ -1,8 +1,20 @@
 # Arquitetura: sufixos de classes
 
+## Arquitetura base
+
+Esta norma pressupõe a topologia de camadas deste conjunto. Antes de aplicar
+suas regras, leia e aplique a base, mesmo na adoção isolada deste especialista.
+O caminho abaixo é relativo a este arquivo:
+
+- `AGENTS.architecture.layer-boundaries.md`
+
+As regras desta norma não ampliam as responsabilidades nem as dependências
+permitidas pela base. Camadas opcionais só devem existir quando necessárias
+às responsabilidades do projeto.
+
 ## Referência e aplicação
 
-- Esta norma complementa o modelo de arquitetura multi-module com a
+- Esta norma complementa a arquitetura base, em um ou vários módulos, com a
   nomenclatura concreta de classes; não substitui responsabilidades, camadas
   ou direções de dependência já definidas.
 - Esta norma define integralmente os sufixos aplicáveis, sem depender de

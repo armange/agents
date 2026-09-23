@@ -1,11 +1,15 @@
 # Regras de Configuração
 
-## Prefixo `nexus`
+## Namespace da aplicação
 
-- Quando forem criadas novas configurações em projetos deste workspace, elas devem ser posicionadas sob o tópico `nexus`.
-- Novas chaves de configuração do domínio Nexus devem usar namespace explícito sob `nexus`, sem criar tópicos soltos na raiz da configuração do projeto.
-- Exemplos preferidos:
-  - `nexus.any.configuration.item`
-  - `nexus.customer.scope.cache.ttl`
-- Exemplo de referência de estilo:
-  - assim como configurações nativas do Spring usam prefixos como `spring.any.configuration.item`, configurações novas do domínio Nexus devem seguir padrão equivalente sob `nexus`.
+- Novas configurações próprias da aplicação devem usar o namespace definido
+  pelo projeto, sem criar tópicos soltos na raiz da configuração.
+- Preserve o namespace já adotado. Quando ele ainda não existir, defina um
+  prefixo que identifique a aplicação ou seu domínio e documente essa escolha.
+- Mantenha as configurações próprias separadas dos namespaces reservados por
+  frameworks e bibliotecas.
+- Exemplos abstratos para uma aplicação cujo prefixo escolhido seja `app`:
+  - `app.feature.enabled`
+  - `app.cache.ttl`
+- O prefixo dos exemplos é ilustrativo; não deve substituir o namespace real
+  definido pelo projeto consumidor.

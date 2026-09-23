@@ -1,5 +1,13 @@
 # Arquitetura: localização de classes
 
+## Arquitetura do projeto
+
+Antes de aplicar esta norma, leia e aplique as instruções arquiteturais do
+projeto consumidor, identificadas nos `AGENTS.md` aplicáveis e em suas
+referências normativas. Use as responsabilidades e os limites de dependência
+ali definidos; esta norma não exige a topologia específica deste catálogo
+nem autoriza ampliar as permissões da arquitetura adotada.
+
 ## Camada e package
 
 - Cada classe deve ser armazenada na camada e no package compatíveis com sua

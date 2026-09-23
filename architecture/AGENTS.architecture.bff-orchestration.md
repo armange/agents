@@ -1,8 +1,18 @@
 # Arquitetura: Orquestração em BFFs
 
+## Arquitetura do projeto
+
+Antes de aplicar esta norma, leia e aplique as instruções arquiteturais do
+projeto consumidor, identificadas nos `AGENTS.md` aplicáveis e em suas
+referências normativas. Use as responsabilidades e os limites de dependência
+ali definidos; esta norma não exige a topologia específica deste catálogo
+nem autoriza ampliar as permissões da arquitetura adotada.
+
+## Regras
+
 - Depende de: arquitetura em camadas, separação de responsabilidades entre BFFs e serviços internos, e definição de domínio responsável por cada operação.
 - Objetivo: manter BFFs como camadas de entrada e adaptação, evitando que acumulem orquestrações que pertencem ao serviço interno dono do domínio.
-- Escopo: BFFs e camadas equivalentes de gateway HTTP que chamam serviços internos do workspace Nexus.
+- Escopo: BFFs e camadas equivalentes de gateway HTTP que chamam serviços internos de uma aplicação ou conjunto de aplicações.
 - BFFs podem orquestrar múltiplas requisições quando a operação envolver serviços internos distintos.
 - Quando uma operação exigir múltiplas leituras ou mutações dentro de um mesmo serviço interno, o serviço interno responsável deve expor uma operação agregada para atender essa necessidade.
 - Sempre que viável, uma operação pública de BFF deve resultar em uma única chamada para cada serviço interno envolvido.

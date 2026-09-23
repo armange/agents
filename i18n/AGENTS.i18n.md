@@ -7,11 +7,11 @@ Antes de analisar, revisar, planejar ou modificar bundles, chaves ou resolvers d
 - `AGENTS.i18n.messages.md`
 - `AGENTS.i18n.message-resolvers.md`
 
-Uma citação deste arquivo ativa obrigatoriamente todas as normas listadas para
-mensagens internacionalizadas no escopo citado.
+Uma referência normativa a este arquivo ativa obrigatoriamente todas as normas
+listadas para mensagens internacionalizadas no escopo citado.
 
 ## Composição local
 
-- Para aplicar apenas um subconjunto, o `AGENTS.md` local deve citar diretamente os especialistas necessários.
-- Para aplicar este conjunto completo, o `AGENTS.md` local deve citar este arquivo.
+- Para aplicar apenas um subconjunto, o `AGENTS.md` local deve declarar referências normativas diretamente aos especialistas necessários.
+- Para aplicar este conjunto completo, o `AGENTS.md` local deve declarar uma referência normativa a este arquivo.
 - Este arquivo não deve receber novas regras de i18n diretamente; novas regras devem ser criadas ou movidas para um arquivo especialista.

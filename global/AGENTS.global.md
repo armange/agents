@@ -12,15 +12,47 @@ composição de normas.
 
 ## Operação de normas
 
-- Antes de analisar, revisar, planejar ou modificar qualquer projeto, a IA deve
-  localizar e ler o `AGENTS.md` da raiz desse projeto, bem como todas as normas
-  citadas direta ou transitivamente por ele.
-- A obrigação de carregar a composição da raiz aplica-se a cada projeto
-  efetivamente envolvido na atividade, mesmo quando a IA tenha iniciado o
-  trabalho em outro diretório ou projeto.
-- Se o projeto envolvido não possuir `AGENTS.md` na raiz, a IA não deve iniciar
-  análise, planejamento nem alteração nele; deve informar a ausência e pedir a
-  criação da composição raiz antes de prosseguir.
+- Antes de cada novo trabalho, a IA deve obrigatoriamente verificar quais
+  projetos, diretórios, tipos de arquivo e responsabilidades serão envolvidos.
+  Essa verificação vale para cada nova solicitação ou etapa com contexto
+  diferente, inclusive na mesma conversa; a seleção anterior não é suficiente.
+- Em cada projeto envolvido, a IA deve partir do `AGENTS.md` raiz e localizar
+  os `AGENTS.md` aplicáveis no caminho até os arquivos envolvidos, incluindo
+  os das pastas ancestrais. Para arquivos novos, considere a pasta de destino.
+- A descoberta inicial deve se limitar ao necessário para identificar o
+  contexto e suas instruções. Antes de analisar, revisar, planejar ou modificar
+  o conteúdo desse contexto, leia integralmente os `AGENTS.md` aplicáveis e
+  carregue suas referências normativas conforme os critérios declarados.
+- A composição raiz e as referências normativas sem critério específico de
+  aplicação formam a base obrigatória. Referências normativas com critérios
+  explícitos de atividade ou contexto devem ser carregadas antes do trabalho
+  correspondente, incluindo suas dependências obrigatórias. Uma referência
+  fora desses critérios não exige leitura antecipada de sua cadeia.
+- Ao descobrir ou passar a envolver outro projeto, diretório, tipo de arquivo
+  ou responsabilidade durante o trabalho, repita obrigatoriamente a verificação
+  e leia as novas instruções aplicáveis antes de prosseguir nesse contexto.
+  Isso também vale para mudanças de atividade na mesma pasta, como passar de
+  documentação para código ou de código para testes.
+- A verificação deve considerar instruções novas ou alteradas. Se houver dúvida
+  sobre a aplicabilidade de uma norma, leia-a antes de agir; se uma instrução
+  obrigatória estiver inacessível, informe o impedimento antes de atuar na área.
+- Se o projeto não possuir `AGENTS.md` na raiz e o usuário tiver solicitado a
+  criação ou organização das instruções de agentes, a IA pode realizar a
+  descoberta, a análise e o planejamento necessários e criar a composição raiz
+  e as composições locais pertinentes. Esse pedido autoriza a inicialização;
+  não exija uma composição prévia nem nova confirmação para executá-la.
+- Durante essa inicialização, siga as normas de organização e as instruções
+  existentes aplicáveis, inclusive as de diretórios ancestrais e subdiretórios.
+  Inspecione estrutura, build, configurações e conteúdo somente na medida
+  necessária para identificar tecnologias, responsabilidades e normas úteis.
+  A autorização de inicialização cobre a organização dos AGENTS; alterações
+  funcionais no projeto dependem de um pedido que também as inclua.
+- Após criar as composições, valide os caminhos e os escopos e carregue o
+  `AGENTS.md` raiz, as composições locais e as referências normativas aplicáveis
+  antes de iniciar qualquer outro trabalho já solicitado.
+- Se faltar o `AGENTS.md` raiz e não houver pedido de criação ou organização
+  das instruções, informe a ausência e solicite a inicialização antes de
+  prosseguir com a análise, o planejamento ou as alterações do projeto.
 - Quando uma norma estiver sendo violada, a IA deve avisar o usuário e pedir permissão para prosseguir com a violação.
 - Quando o usuário fizer uma pergunta, a IA deve responder de forma simples e textual.
 - Uma pergunta do usuário não autoriza alteração de arquivos, implementação, execução de correção ou mudança de estado.
@@ -53,10 +85,54 @@ composição de normas.
 
 ## Citações entre documentos
 
-- Toda citação de arquivo `AGENTS.md` ou `AGENTS.*.md` é uma composição normativa obrigatória.
-- A citação deve aparecer logo após um título ou seção que indique claramente o tema e o escopo da norma composta.
-- O título ou seção deve dar ao leitor uma noção do conteúdo esperado antes da abertura do documento citado.
-- Não insira citações soltas, condicionais ou sem contexto estrutural.
+- O tipo de uma referência é definido pela instrução que a acompanha. Um nome,
+  caminho, link ou título isolado não ativa uma norma.
+- Referência normativa: contém uma ordem explícita de leitura ou aplicação,
+  como "leia também", "leia e aplique", "aplique" ou "siga as regras de".
+  A ordem pode introduzir uma lista de arquivos. Ela torna obrigatórios o
+  arquivo e suas dependências normativas aplicáveis no contexto declarado.
+- Referência informativa: apresenta um documento como explicação complementar,
+  sem ordem de aplicação. Identifique-a como "referência informativa" quando
+  houver risco de confusão. Sua leitura é opcional e não ativa suas regras.
+- Exemplo ou menção: apresenta nomes ilustrativos ou instruções dentro de
+  modelos explicitamente identificados como exemplos. Não exige leitura,
+  aplicação nem existência dos arquivos ilustrados. Ordens dentro de um modelo
+  só passam a valer quando adotadas como instruções no projeto de destino.
+- A marcação de exemplo delimita a interpretação das ordens no trecho
+  ilustrativo. Fora de exemplos, uma dependência real deve ser declarada como
+  referência normativa; não a substitua por um link ou referência informativa.
+- Uma menção informativa ou ilustrativa não cancela uma obrigação ativada por
+  outra referência normativa ao mesmo arquivo.
+- A referência normativa deve aparecer após um título ou seção que indique
+  claramente o tema e o escopo da norma composta.
+- Critérios de carregamento devem aparecer no documento que faz a citação,
+  antes da referência, e identificar atividades, diretórios, tipos de arquivo,
+  tecnologias ou responsabilidades concretas. Sem critério explícito, uma
+  referência normativa exige leitura em todo o escopo da composição que a contém.
+- Ao percorrer referências normativas transitivas, preserve o escopo que ativou
+  a cadeia e observe os critérios explícitos de cada referência. Uma norma
+  ativada deve ser cumprida integralmente no seu escopo; economia de contexto
+  não autoriza omitir dependências obrigatórias nem escolher partes de um agregador.
+- Não deixe a leitura de uma referência normativa depender da conveniência do
+  agente. O atendimento ao critério torna sua leitura obrigatória.
+
+## Ciclos e reaproveitamento de leitura
+
+- Identifique cada arquivo pelo caminho resolvido a partir do documento que
+  faz a referência, normalizando caminhos equivalentes e links simbólicos.
+  Nomes iguais em pastas diferentes não identificam necessariamente a mesma norma.
+- Registre os arquivos em leitura e os já lidos no percurso. Ao reencontrar um
+  arquivo em leitura, encerre somente essa repetição e continue as demais
+  dependências normativas aplicáveis. Um ciclo não dispensa nenhuma das normas
+  envolvidas nem permite abandonar os outros ramos da composição.
+- Reaproveite uma leitura somente quando o conteúdo integral continuar
+  disponível no contexto e sua versão atual estiver confirmada. Se o arquivo
+  mudou, o conteúdo foi perdido ou resumido, ou houver dúvida sobre a versão,
+  leia-o novamente antes de aplicar suas regras.
+- A cada novo trabalho ou mudança de contexto, reavalie obrigatoriamente os
+  critérios das referências, inclusive nos arquivos já lidos. Reaproveitar o
+  conteúdo não dispensa descobrir e ler novas dependências aplicáveis, nem
+  permite reduzir o conjunto de escopos em que uma norma deve ser cumprida.
 
 # Comunicação
 

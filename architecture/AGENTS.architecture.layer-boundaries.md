@@ -10,6 +10,8 @@
 
 - Uma alteração interna de camada não deve exigir refatoração em outra camada quando os contratos permanecerem compatíveis.
 - Cada camada pode usar a tecnologia adequada à sua responsabilidade.
+- A adoção desta base ou de uma norma derivada não exige criar camadas ou
+  packages vazios; materialize somente responsabilidades necessárias ao projeto.
 
 ## Responsabilidades
 

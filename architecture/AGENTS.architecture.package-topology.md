@@ -1,5 +1,17 @@
 # Arquitetura: topologia de packages
 
+## Arquitetura base
+
+Esta norma pressupõe a topologia de camadas deste conjunto. Antes de aplicar
+suas regras, leia e aplique a base, mesmo na adoção isolada deste especialista.
+O caminho abaixo é relativo a este arquivo:
+
+- `AGENTS.architecture.layer-boundaries.md`
+
+As regras desta norma não ampliam as responsabilidades nem as dependências
+permitidas pela base. Camadas opcionais só devem existir quando necessárias
+às responsabilidades do projeto.
+
 ## Regra geral
 
 - Cada classe deve ficar no package que expressa sua camada, responsabilidade

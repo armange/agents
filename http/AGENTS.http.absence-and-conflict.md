@@ -3,8 +3,8 @@
 ## Objetivo e escopo
 
 Esta norma define os status HTTP para ausência normal de recurso e para
-conflitos de dados ou estado em contratos Nexus. Aplica-se a endpoints,
-respostas de exceção e cenários de contrato que dependam desses status.
+conflitos de dados ou estado em contratos que adotem estas convenções. Aplica-se
+a endpoints, respostas de exceção e cenários de contrato que dependam desses status.
 
 ## Ausência normal do recurso-alvo
 
@@ -21,8 +21,8 @@ respostas de exceção e cenários de contrato que dependam desses status.
 ## Conflito de dependência, dados ou estado
 
 - Quando uma operação de escrita depender de entidade relacionada obrigatória
-  inexistente, o contrato deve retornar `409 Conflict` com
-  `ConstraintViolationsDto`.
+  inexistente, o contrato deve retornar `409 Conflict` com o envelope canônico
+  de violações definido pelo projeto.
 - Violações de integridade conhecidas, inclusive as identificadas por causa
   específica de banco ou trigger, devem retornar `409 Conflict` com o envelope
   canônico de violações.

@@ -1,5 +1,17 @@
 # Arquitetura: acoplamento entre classes
 
+## Arquitetura base
+
+Esta norma pressupõe a topologia de camadas deste conjunto. Antes de aplicar
+suas regras, leia e aplique a base, mesmo na adoção isolada deste especialista.
+O caminho abaixo é relativo a este arquivo:
+
+- `AGENTS.architecture.layer-boundaries.md`
+
+As regras desta norma não ampliam as responsabilidades nem as dependências
+permitidas pela base. Camadas opcionais só devem existir quando necessárias
+às responsabilidades do projeto.
+
 ## Direção das dependências
 
 - Classes de domínio não devem depender de classes de aplicação, persistência,
@@ -44,4 +56,6 @@
 - Adaptações técnicas exigidas por frameworks podem existir na borda ou na
   infraestrutura, desde que não vazem para o domínio.
 - Normas mais específicas de policies, services, persistência, clientes,
-  integrações e localização de classes prevalecem sobre esta norma geral.
+  integrações e localização de classes prevalecem sobre esta norma geral
+  somente quando compatíveis com as responsabilidades e direções de
+  dependência da arquitetura base.

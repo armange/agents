@@ -7,9 +7,9 @@
 - O objetivo é aplicar a cada diretório somente as normas úteis ao seu conteúdo
   e às suas subpastas, reduzindo contexto desnecessário sem perder regras
   obrigatórias.
-- Esta norma complementa `AGENTS.agents.specialized-files.md`. Aquele arquivo
-  define como normas e composições devem ser estruturadas; este arquivo define
-  o processo para aplicar essa estrutura com segurança.
+- Referência informativa: `AGENTS.agents.specialized-files.md` apresenta a
+  estrutura das normas e composições. Este guia descreve o processo de
+  organização; esta menção não exige leitura nem ativa o outro documento.
 - O processo se aplica tanto ao reaproveitamento de normas existentes quanto à
   criação de novas normas especialistas.
 
@@ -24,18 +24,59 @@
   Ela deve declarar escopo e precedência de forma explícita e não pode
   contradizer uma norma superior.
 - A existência de uma norma central não ativa sua aplicação. Ela só se torna
-  obrigatória quando um `AGENTS.md` local a cita, respeitado o escopo material
-  declarado na própria norma.
+  obrigatória por referência normativa de uma composição local aplicável,
+  direta ou transitiva, quando o trabalho atende ao escopo declarado para a
+  referência, respeitado também o escopo material da norma.
+- A composição local deve permitir que, antes de cada novo trabalho ou mudança
+  de contexto, a IA verifique obrigatoriamente quais instruções precisa ler.
+  A verificação parte da raiz e percorre os `AGENTS.md` aplicáveis até a área
+  envolvida, antes de analisar, revisar, planejar ou modificar seu conteúdo.
 - Arquivos de plano operacional e relatórios não são normas permanentes. Devem
   seguir suas regras de nomenclatura e localização próprias, sem serem usados
   para substituir um `AGENTS.md` de composição.
 
+## Tipos de referência na composição
+
+- Para ativar uma norma, escreva uma ordem explícita de leitura ou aplicação,
+  como "leia também", "leia e aplique" ou "aplique", antes do arquivo ou da
+  lista de arquivos. Declare o contexto em que essa referência normativa vale.
+- Para apresentar documentação complementar, identifique a referência como
+  informativa. Sua leitura é opcional e não ativa regras. Um nome ou link sem
+  ordem de leitura ou aplicação não é suficiente para compor normas.
+- Identifique modelos e nomes ilustrativos como exemplos. As ordens dentro
+  desses trechos não ativam normas neste guia; quando adotadas como instruções
+  no projeto de destino, passam a valer no escopo da composição local.
+- Os blocos de modelos deste guia e os exemplos de nomes de novas normas são
+  ilustrativos. Os caminhos de um modelo adotado devem ser ajustados e validados
+  no projeto de destino; nomes hipotéticos não precisam existir neste repositório.
+- Uma dependência necessária deve ser normativa. Não use a classificação
+  informativa ou de exemplo para dispensar uma obrigação real.
+
 ## Processo de análise
+
+### 0. Inicializar um projeto sem composição raiz
+
+- Verifique se o projeto possui `AGENTS.md` na raiz. Se já existir, carregue
+  sua composição aplicável e prossiga com a análise normal.
+- Se não existir e o usuário tiver solicitado criar ou organizar os AGENTS,
+  realize a análise inicial e a criação das composições sem exigir um arquivo
+  raiz prévio nem nova confirmação para a mesma organização já solicitada.
+- Leia as instruções existentes aplicáveis, inclusive as de pastas ancestrais
+  e subdiretórios. A ausência da composição raiz não suspende essas instruções.
+- Limite a inspeção de estrutura, build, configurações e conteúdo à identificação
+  das tecnologias e responsabilidades necessárias para distribuir as normas.
+  Use as etapas seguintes para selecionar normas e criar composições com
+  referências normativas, critérios de carregamento e escopos explícitos.
+- O pedido de inicialização autoriza organizar os AGENTS. Trabalhos funcionais
+  dependem de autorização correspondente e só devem começar depois de validar
+  e carregar as composições criadas e suas referências aplicáveis.
+- Sem pedido de criação ou organização dos AGENTS, informe a ausência e
+  solicite a inicialização antes de prosseguir com o trabalho no projeto.
 
 ### 1. Descobrir o contexto antes de propor arquivos
 
-- Leia todos os `AGENTS.md` e `AGENTS.*.md` aplicáveis, inclusive as citações
-  transitivas, antes de decidir a distribuição.
+- Leia todos os `AGENTS.md` e `AGENTS.*.md` aplicáveis, inclusive suas referências
+  normativas transitivas, antes de decidir a distribuição.
 - Inspecione a raiz do projeto, o build, os módulos, linguagens, frameworks,
   diretórios `src/main`, `src/test`, recursos, documentação e configurações.
 - Identifique o tipo do projeto: serviço HTTP, biblioteca, ferramenta,
@@ -58,6 +99,14 @@
   endpoints, `PUT`/`PATCH`, autoria da requisição ou auditoria persistida.
 - Não aplique uma arquitetura de serviço a uma biblioteca quando ela pressupor
   camadas, packages ou responsabilidades que a biblioteca não adota.
+- Para cada norma arquitetural candidata, verifique também os pré-requisitos
+  normativos transitivos e sua compatibilidade com a arquitetura adotada.
+  Especialistas que pressupõem uma topologia devem citar sua base como leitura
+  obrigatória, inclusive para adoção isolada. Normas reutilizáveis entre
+  arquiteturas devem seguir explicitamente a arquitetura do projeto consumidor.
+- Não selecione um especialista cuja base seja incompatível nem omita seus
+  pré-requisitos para adaptá-lo ao projeto. A existência de módulos ou o uso de
+  uma linguagem não implica adoção de uma topologia de camadas.
 - Quando uma norma for parcialmente compatível, cite somente os especialistas
   que correspondem ao caso real, em vez do arquivo agregador que ativaria temas
   não aplicáveis.
@@ -71,7 +120,7 @@ Exemplo de matriz para uma biblioteca Java multi-módulo:
 | i18n | aplicar em subdiretório | package de resolver e bundles | há resolver e `.properties` |
 | Exposição HTTP | aplicar em subdiretório | package de adaptadores HTTP | há advice/handler HTTP |
 | Endpoints HTTP | não aplicar | nenhum | a biblioteca não expõe endpoints próprios |
-| Arquitetura multi-módulo | aplicar | raiz | o Gradle declara módulos e dependências |
+| Dependências entre módulos e build Gradle | aplicar | raiz | o Gradle declara módulos e dependências; especialistas selecionados sem pressupor a topologia do agregador completo |
 
 ### 3. Escolher a granularidade
 
@@ -103,6 +152,15 @@ Exemplo de matriz para uma biblioteca Java multi-módulo:
 - Crie ou ajuste o `AGENTS.md` da raiz como ponto de entrada do projeto.
 - Separe as citações por título que deixe claros o tema e o escopo; não faça
   listas de referências sem um título explicativo.
+- Declare como normativas as referências usadas para compor regras, com uma
+  ordem explícita de leitura ou aplicação. Mantenha explicações informativas e
+  exemplos identificados para que não sejam carregados como dependências.
+- Mantenha a base de leitura inicial restrita às regras transversais. Para
+  instruções de uma atividade específica, declare antes da referência o
+  critério objetivo que exige sua leitura, inclusive nas citações transitivas.
+- Inclua na composição a verificação obrigatória antes de cada novo trabalho
+  e sempre que a atividade alcançar outro contexto. Declare que as novas normas
+  aplicáveis devem ser lidas antes de atuar, mesmo dentro da mesma conversa.
 - Todo `AGENTS.md` que citar caminhos relativos deve declarar, antes das
   citações, que os caminhos são relativos ao próprio arquivo e indicar a raiz
   do projeto como referência nominal, sem citar qualquer path.
@@ -117,6 +175,14 @@ Modelo de raiz para projeto multi-módulo:
 
 As referências abaixo são relativas a este arquivo. Como ponto de referência,
 considere a raiz do projeto.
+
+## Verificação de contexto
+
+Antes de cada novo trabalho e sempre que seu contexto mudar, verifique os
+`AGENTS.md` da raiz e do caminho até os arquivos envolvidos. Leia as instruções
+aplicáveis e suas referências obrigatórias antes de atuar na área. As seções
+abaixo indicam quando carregar cada conjunto; a verificação é obrigatória
+mesmo que outro trabalho já tenha sido realizado nesta conversa.
 
 ## Normas globais e de projetos
 
@@ -205,6 +271,9 @@ Modelo para um package de adaptadores HTTP de exceções:
 ```md
 # Instruções de Exposição HTTP
 
+As referências abaixo são relativas a este arquivo. Como ponto de referência,
+considere a raiz do projeto.
+
 Antes de modificar adaptadores HTTP de exceções nesta pasta, leia também:
 
 - `../../../../.agents/exceptions/AGENTS.exceptions.interpretation.md`
@@ -216,6 +285,9 @@ Modelo para bundles de mensagens:
 
 ```md
 # Instruções de Recursos Internacionalizados
+
+As referências abaixo são relativas a este arquivo. Como ponto de referência,
+considere a raiz do projeto.
 
 Antes de modificar bundles de mensagens nesta pasta, leia também:
 
@@ -239,19 +311,52 @@ Antes de modificar bundles de mensagens nesta pasta, leia também:
   nova norma independente e cite-a apenas nos pontos locais adequados.
 - Não altere normas compartilhadas para acomodar uma exceção de um único
   projeto. Crie uma especialização local clara quando a exceção for legítima.
-- Ao alterar uma norma compartilhada, reavalie todas as composições que a citam
-  direta ou transitivamente e informe os projetos potencialmente afetados antes
-  de concluir a atividade.
+- Ao alterar uma norma compartilhada, reavalie as composições que a referenciam
+  normativamente, direta ou transitivamente, e informe os projetos potencialmente
+  afetados antes de concluir a atividade. Confira também as explicações e os
+  exemplos que descrevam a regra alterada para manter a documentação coerente.
 
 ## Validação e aceite
 
-- Verifique que cada citação em todos os novos ou alterados `AGENTS.md` aponta
-  para arquivo existente a partir do diretório que a contém.
+- Ao manter este catálogo, execute `python3 scripts/validate_agents.py` na raiz
+  do repositório para conferir referências, modelos, ciclos, repetições e volume
+  potencial das composições. O comando usa arquivos do disco, mesmo ignorados
+  pelo Git. Corrija os erros e revise os avisos antes de concluir a manutenção.
+- Referência informativa: [uso e limites do verificador](../README.md#4-validação-automática).
+  A verificação automática complementa a revisão abaixo; não decide critérios
+  de contexto nem compatibilidade semântica das normas. Projetos consumidores
+  podem usar o script do catálogo com `--root` apontando para a raiz comum das
+  normas, sem precisar copiá-lo para cada projeto.
+
+- Em uma inicialização, confirme que a composição raiz foi criada e que ela e
+  as composições locais aplicáveis foram carregadas antes de qualquer outro
+  trabalho solicitado. A descoberta inicial deve ter servido à organização
+  das instruções e preservado as regras já existentes nos diretórios envolvidos.
+- Verifique que cada referência normativa nos arquivos novos ou alterados aponta
+  para arquivo existente a partir do diretório que a contém. Referências
+  informativas a documentos reais devem ser corretas; nomes hipotéticos em
+  exemplos não devem ser tratados como dependências ausentes.
 - Verifique que cada `AGENTS.md` com caminhos relativos declara que eles são
   relativos ao próprio arquivo e inclui a raiz do projeto como referência
   nominal, sem incluir path.
+- Confira que a adoção isolada de cada especialista arquitetural alcança sua
+  base obrigatória e que normas independentes de uma topologia não a importam
+  sem necessidade. Normas derivadas não ampliam permissões da base nem exigem
+  materializar camadas opcionais sem responsabilidade real.
 - Verifique a cadeia transitiva das normas agregadoras para garantir que ela não
   introduz temas incompatíveis no diretório local.
+- Resolva os caminhos das referências normativas, incluindo links simbólicos,
+  e identifique ciclos e dependências repetidas. Durante a leitura, um retorno
+  a um arquivo em leitura encerra apenas a repetição; as demais dependências
+  continuam obrigatórias. Referências informativas não integram essa cadeia.
+- Confira que uma leitura anterior só é reaproveitada com conteúdo integral
+  disponível e versão atual confirmada. Cada novo trabalho ou contexto exige
+  reavaliar as referências do arquivo, mesmo quando ele não precisa ser relido.
+- Verifique que a composição exige nova avaliação de contexto antes de cada
+  trabalho e durante mudanças de escopo, com leitura prévia das novas normas.
+- Confira um cenário restrito a uma atividade e outro que passe a envolver uma
+  segunda área. No primeiro, referências fora do escopo devem aguardar; no
+  segundo, suas instruções devem ser carregadas antes da nova atividade.
 - Revise ao menos um exemplo representativo de cada escopo criado: raiz,
   código principal, testes, recursos e uma fronteira técnica especializada.
 - Confirme que nenhuma norma de protocolo, banco, framework ou teste foi
@@ -267,7 +372,7 @@ Antes de modificar bundles de mensagens nesta pasta, leia também:
 ## Critério de resultado
 
 - Um projeto está organizado quando uma pessoa ou IA consegue começar por seu
-  `AGENTS.md` raiz, seguir as citações aplicáveis e encontrar em cada pasta
-  somente as normas necessárias para modificar seu conteúdo corretamente.
+  `AGENTS.md` raiz, seguir as referências normativas aplicáveis e encontrar em
+  cada pasta somente as normas necessárias para modificar seu conteúdo corretamente.
 - A redução de contexto deve vir da composição precisa, e nunca da omissão de
   uma norma materialmente aplicável.

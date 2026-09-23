@@ -2,13 +2,12 @@
 
 ## Integração padrão
 
-- Projetos Java Nexus que recebam contratos de entrada devem usar Jakarta Bean
-  Validation por meio da integração fornecida pelo `nexus-validation`.
+- A integração com Jakarta Bean Validation para contratos de entrada deve
+  reutilizar o suporte do framework ou da biblioteca adotada pelo projeto.
 - Projetos que não recebam contratos de entrada não devem adicionar essa
   dependência sem necessidade concreta.
 - Não crie integração, envelope, exceção ou conversor paralelo para violações
-  declarativas quando o `nexus-validation` já fornecer o comportamento
-  necessário.
+  declarativas quando a integração existente já fornecer o comportamento necessário.
 
 ## Validações estruturais
 

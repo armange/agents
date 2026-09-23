@@ -1,5 +1,15 @@
 # Arquitetura: Adaptação Semântica pelo Domínio
 
+## Arquitetura do projeto
+
+Antes de aplicar esta norma, leia e aplique as instruções arquiteturais do
+projeto consumidor, identificadas nos `AGENTS.md` aplicáveis e em suas
+referências normativas. Use as responsabilidades e os limites de dependência
+ali definidos; esta norma não exige a topologia específica deste catálogo
+nem autoriza ampliar as permissões da arquitetura adotada.
+
+## Regras
+
 - Depende de: arquitetura em camadas, contratos do domínio e separação entre domínio e tecnologia externa.
 - Objetivo: garantir que a tecnologia externa se adapte ao modelo e à semântica do domínio, e não o contrário.
 - Escopo: clientes, integrações, adaptadores, gateways e quaisquer bordas que traduzam protocolos externos.
