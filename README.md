@@ -7,6 +7,8 @@ Este repositório reúne instruções reutilizáveis para orientar o trabalho de
 - [1 Como funciona](#1-como-funciona)
 - [2 Como usar em outro projeto](#2-como-usar-em-outro-projeto)
   - [2.1 Prompt sugerido para projetos novos](#21-prompt-sugerido-para-projetos-novos)
+  - [2.2 Exemplo de composição manual](#22-exemplo-de-composição-manual)
+  - [2.3 Prompt sugerido para projetos existentes](#23-prompt-sugerido-para-projetos-existentes)
 - [3 Organização](#3-organização)
 - [4 Validação automática](#4-validação-automática)
 - [5 Licença](#5-licença)
@@ -121,13 +123,68 @@ O agregador multi-módulo a inclui pela norma de packages. Adaptação semântic
 localização de classes e orquestração de BFF podem seguir a arquitetura do
 projeto consumidor. A adoção das normas não exige criar camadas vazias.
 
+### 2.3 Prompt sugerido para projetos existentes
+
+[Voltar ao sumário](#sumário)
+
+O prompt para projetos novos apresenta a criação inicial das composições. Em um
+projeto existente, também é necessário substituir referências obsoletas e
+verificar se os AGENTS atuais estão em diretórios adequados. Esta segunda
+sugestão explicita essa migração e sua validação, sem alterar a primeira.
+
+Substitua `[caminho do repositório agents]` pela localização do catálogo:
+
+```text
+Reorganize as instruções de IA deste projeto usando o catálogo de normas em
+[caminho do repositório agents].
+
+Leia e aplique o guia agents/AGENTS.agents.organization.md do catálogo.
+
+Antes de editar, inventarie os AGENTS existentes, suas referências e os
+diretórios de código, testes e recursos configurados no build. Identifique as
+regras locais que devem permanecer e as referências que precisam ser trocadas.
+
+Atualize o AGENTS.md raiz e as composições locais. Preserve especializações
+compatíveis, substitua referências obsoletas e retire composições redundantes
+ou posicionadas em diretórios inadequados. Não altere o código funcional.
+
+Requisitos:
+- Selecione somente normas compatíveis com as responsabilidades de cada área,
+  incluindo seus pré-requisitos obrigatórios.
+- Use referências normativas explícitas e caminhos relativos ao arquivo que
+  faz a referência, sem copiar o conteúdo dos especialistas.
+- Mantenha normas transversais na raiz e declare critérios objetivos para as
+  normas aplicáveis apenas a uma atividade, diretório ou tipo de arquivo.
+- Não mantenha AGENTS em diretórios de recursos configurados no build, como
+  src/main/resources e src/test/resources. Cite as normas desses recursos em
+  uma composição ancestral, com critérios específicos para cada escopo.
+- Para Java, inclua as normas de coesão de classes e responsabilidade única
+  por operação e avalie a arquitetura antes de adotar normas de topologia.
+- Exija nova verificação dos AGENTS aplicáveis a cada trabalho ou mudança de
+  contexto, mesmo dentro da mesma conversa.
+
+Valide as composições com o verificador do catálogo, usando uma raiz que
+contenha projeto e catálogo quando houver referências externas. Revise também
+os escopos, resolva manualmente cada caminho citado e confirme que diretórios
+de recursos não contêm AGENTS. Se a raiz comum incluir outros projetos, separe
+seus diagnósticos dos erros do catálogo e do projeto em manutenção. Corrija os
+erros deste projeto e informe os demais sem declarar sucesso para toda a árvore.
+
+Ao concluir, informe as composições criadas, alteradas ou retiradas, as normas
+selecionadas e excluídas e o resultado de cada validação. Limite as alterações
+à organização das instruções de IA.
+```
+
 ## 3 Organização
 
 [Voltar ao sumário](#sumário)
 
 As pastas agrupam as instruções por tema. Além das áreas de código e arquitetura, há normas para exceções, internacionalização, configuração, validação, auditoria e organização dos próprios arquivos `AGENTS`. Os arquivos em `global/` e `projects/` contêm regras de operação, identificação e versionamento que podem ser adotadas conforme o contexto.
 
-Referência informativa: o [especialista em conhecimento de projetos reais](projects/AGENTS.projects.known-projects.md) preserva o catálogo, os aliases e as convenções de um conjunto específico de projetos. Sua adoção exige referência normativa explícita no `AGENTS.md` local dos projetos abrangidos; os agregadores genéricos não o carregam automaticamente.
+Um especialista local de conhecimento de projetos reais pode preservar o
+catálogo, os aliases e as convenções de um conjunto específico de projetos.
+Sua adoção exige referência normativa explícita no `AGENTS.md` local dos
+projetos abrangidos; os agregadores genéricos não o carregam automaticamente.
 
 ## 4 Validação automática
 
