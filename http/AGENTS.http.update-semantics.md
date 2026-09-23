@@ -1,0 +1,29 @@
+# HTTP: Semântica de Atualização
+
+- `PUT` deve representar substituição integral da representação atualizável do recurso.
+- `PUT` é replace total: o payload representa o estado final completo do recurso ou do escopo atualizável definido pelo endpoint.
+- `PUT` pode fazer desatribuições quando o modelo permitir ausência, porque campos, blocos, relações e arrays ausentes no payload fazem parte do estado final pretendido.
+- `PUT` não deve ser usado para atualização parcial; quando a operação for parcial, deve ser modelada como `PATCH`.
+- Em `PUT`, campos, blocos, relações e arrays ausentes no payload são considerados ausentes no estado final pretendido.
+- Em `PUT`, relações ou campos obrigatórios ausentes ou enviados como `null` devem gerar erro de validação ou regra de domínio quando não puderem existir ausentes.
+- `PUT` só deve ser usado quando o cliente puder enviar a representação completa do escopo atualizável exigido pelo endpoint.
+- `PATCH` deve representar merge, preservando campos e relações ausentes ou enviados explicitamente como `null`.
+- `PATCH` é parcial por natureza, mas pode produzir o mesmo resultado de um replace geral quando o cliente enviar todos os campos atualizáveis com valores concretos.
+- Em payloads agregados com `PATCH`, campos, blocos, relações e arrays ausentes preservam o estado atual.
+- Em payloads agregados com `PATCH`, campos, blocos, relações e arrays presentes com valor `null` também preservam o estado atual.
+- Em payloads agregados com `PATCH`, objetos presentes devem ser tratados como merge recursivo: campos internos ausentes preservam o valor atual e campos internos presentes com valor concreto substituem o valor correspondente.
+- `PATCH` pode substituir valores, pois essa é sua finalidade principal, mas não deve fazer desatribuição de valor.
+- Desatribuição de valor não deve ser feita por `PATCH` em nenhum caso; quando a operação precisar representar a remoção de um valor ou relação por ausência, essa responsabilidade pertence ao `PUT` ou a outro contrato específico explicitamente definido.
+- Em payloads agregados com `PATCH`, campos escalares, blocos/objetos, relações singulares e campos internos presentes com valor `null` não representam substituição nem desatribuição; representam preservação do valor atual.
+- A preservação do valor atual em `PATCH` deve ocorrer por omissão do campo, bloco ou relação no JSON ou pelo envio explícito de `null`.
+- Em payloads agregados com `PATCH`, arrays vazios solicitam substituição da coleção representada pelo array por uma coleção vazia.
+- Em payloads agregados com `PATCH`, arrays preenchidos substituem integralmente a coleção ou relação representada pelo array.
+- Arrays não devem usar `null` para representar coleção vazia; em `PATCH`, array `null` preserva a coleção atual.
+- Para substituir uma coleção atualizável por uma coleção vazia, o cliente deve enviar array vazio.
+- Em `PATCH`, array vazio é substituição da coleção por uma coleção vazia, não desatribuição por `null`; portanto é válido.
+- Em `PATCH`, itens `null` dentro de arrays devem gerar erro de payload inválido com HTTP 400, pois não representam atributo identificável a preservar nem item reconciliável.
+- Relações obrigatórias podem ser substituídas por outra referência válida quando a regra de domínio permitir, mas valor `null` em `PATCH` preserva a relação atual.
+- Campos desconhecidos em payloads de atualização não devem produzir mutação.
+- Campos desconhecidos devem rejeitar a requisição com HTTP 400, informando qual parte da estrutura é inexistente ou incorreta quando essa identificação for tecnicamente viável.
+- Quando um contrato decidir ignorar campos desconhecidos por compatibilidade, essa decisão deve ser explícita e não pode alterar o estado do recurso.
+- Essas regras não substituem regras específicas de mutação, como `IN_PLACE` e `OUT_OF_PLACE`.

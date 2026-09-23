@@ -1,0 +1,28 @@
+# Arquitetura Multi-module: Tipos de Módulos
+
+- Módulo de domínio: contratos, modelos, políticas, regras de negócio, portas e abstrações do domínio.
+- Um módulo de domínio pode conter packages como `domain.model`, `domain.service`, `domain.policy`, `domain.validation`, `domain.support`, `domain.port` ou equivalentes já adotados pelo projeto.
+- Um módulo de domínio deve publicar apenas contratos e tipos de domínio que outros módulos precisam consumir.
+- Um módulo de domínio não deve depender de módulos de aplicação, persistência, cliente, integração, bootstrap ou runtime.
+- Um módulo de domínio não deve expor tipos de framework ou infraestrutura em assinaturas públicas.
+- Um módulo de aplicação ou entrada expõe operações do domínio por um mecanismo de entrada, como HTTP, CLI, job acionado externamente ou mensageria de entrada.
+- Um módulo de aplicação deve depender dos contratos do domínio.
+- Um módulo de aplicação deve traduzir protocolo de entrada para contratos do domínio.
+- Um módulo de aplicação não deve implementar regra de negócio, acessar persistência diretamente nem decidir política de domínio.
+- Um módulo de persistência implementa contratos de persistência definidos pelo domínio e isola detalhes de armazenamento.
+- Um módulo de persistência deve depender do domínio que implementa.
+- Um módulo de persistência não deve criar regra de negócio nova nem impor semântica de domínio que não exista nos contratos do domínio.
+- Um módulo de cliente ou integração de saída implementa comunicação de saída com sistemas externos ou serviços internos independentes.
+- Um módulo de cliente ou integração de saída deve depender dos contratos de saída do domínio ou de um módulo de contratos explicitamente definido.
+- Um módulo de cliente ou integração de saída deve traduzir dados do domínio para o protocolo externo e traduzir respostas externas para dados do domínio.
+- Um módulo de cliente ou integração de saída não deve expor DTOs externos para o domínio nem implementar regra de negócio do domínio consumidor.
+- Um módulo de integração de entrada recebe dados automaticamente de sistemas, filas, tópicos, arquivos ou outros provedores.
+- Um módulo de integração de entrada deve depender dos contratos do domínio e traduzir o formato externo recebido para dados conhecidos pelo domínio.
+- Um módulo de contratos compartilhados publica contratos mínimos e estáveis consumidos por mais de um módulo.
+- Um módulo de contratos compartilhados deve existir apenas quando houver necessidade real de separar contratos de implementação.
+- Um módulo compartilhado interno deve conter suporte técnico ou tipos realmente reutilizáveis por múltiplos módulos do mesmo projeto.
+- Um módulo compartilhado interno deve ser pequeno, coeso e sem dependências pesadas.
+- Um módulo de composição ou runtime monta a aplicação executável, declara dependências concretas, carrega configurações, inicializa o framework e disponibiliza o runtime.
+- Um módulo de composição ou runtime pode depender de módulos de entrada, domínio, persistência, clientes e integrações concretas necessários para execução.
+- Essa permissão é exclusiva para composição de runtime.
+- Nenhum módulo de domínio, aplicação, persistência, cliente ou integração deve depender do módulo de composição.
