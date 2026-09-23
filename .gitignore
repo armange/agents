@@ -1,2 +1,9 @@
+# Versiona as instruções da raiz, mesmo com a exclusão global de AGENTS.md.
+!/AGENTS.md
+
 # Cache local dos scripts Python.
 /scripts/__pycache__/
+/.idea
+
+# Conhecimento específico mantido apenas localmente.
+/projects/AGENTS.projects.known-projects.md

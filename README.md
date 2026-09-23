@@ -6,6 +6,7 @@ Este repositório reúne instruções reutilizáveis para orientar o trabalho de
 
 - [1 Como funciona](#1-como-funciona)
 - [2 Como usar em outro projeto](#2-como-usar-em-outro-projeto)
+  - [2.1 Prompt sugerido para projetos novos](#21-prompt-sugerido-para-projetos-novos)
 - [3 Organização](#3-organização)
 - [4 Validação automática](#4-validação-automática)
 - [5 Licença](#5-licença)
@@ -39,6 +40,54 @@ descreve como analisar o projeto, selecionar normas compatíveis, distribuí-las
 entre a raiz e os subdiretórios e validar as composições.
 
 Se o projeto ainda não possui `AGENTS.md` na raiz, solicite a criação ou organização das instruções de agentes. Esse pedido permite à IA inspecionar o projeto para selecionar as normas e criar as composições. Ao concluir a distribuição, ela deve validar e carregar as instruções antes de iniciar outros trabalhos já solicitados.
+
+### 2.1 Prompt sugerido para projetos novos
+
+[Voltar ao sumário](#sumário)
+
+> **Para começar:** disponibilize o catálogo à IA, copie o prompt abaixo e
+> substitua `[caminho do repositório agents]` pela localização do catálogo.
+
+Este é um exemplo de solicitação para usar no projeto de destino:
+
+```text
+Organize as instruções de IA deste projeto usando o catálogo de normas em
+[caminho do repositório agents].
+
+Leia e aplique o guia agents/AGENTS.agents.organization.md do catálogo.
+
+Analise a estrutura, as tecnologias, o tipo de projeto e as responsabilidades
+existentes. Se o projeto ainda estiver vazio, use os requisitos disponíveis
+e pergunte apenas pelas definições indispensáveis que estiverem faltando.
+
+Crie o AGENTS.md raiz e distribua composições locais onde houver necessidade,
+respeitando as instruções existentes.
+
+Requisitos:
+- Selecione somente normas compatíveis com o projeto, incluindo seus
+  pré-requisitos obrigatórios.
+- Use referências normativas explícitas aos especialistas, sem copiar
+  seu conteúdo.
+- Declare caminhos relativos ao arquivo que faz a referência e valide-os.
+- Mantenha na raiz as normas transversais e condicione as demais ao contexto
+  em que são necessárias.
+- Exija que, antes de cada novo trabalho ou mudança de contexto, a IA
+  verifique e leia todas as novas instruções aplicáveis.
+- Para Java, inclua as normas de coesão de classes e responsabilidade única
+  por operação.
+- Avalie a arquitetura antes de adotar normas que pressuponham uma
+  topologia específica.
+- Evite composições redundantes e a criação de diretórios sem necessidade.
+
+Valide as composições criadas com o verificador do catálogo, quando disponível,
+e revise manualmente sua compatibilidade e seus critérios de aplicação.
+
+Ao concluir, informe os arquivos criados, as normas selecionadas, as exclusões
+relevantes e o resultado da validação. Limite as alterações à organização das
+instruções de IA.
+```
+
+### 2.2 Exemplo de composição manual
 
 Disponibilize este repositório em um local acessível ao projeto, por exemplo, na pasta `.agents/` da sua raiz. Em seguida, crie ou edite o `AGENTS.md` do projeto para indicar quais instruções o agente deve ler:
 
