@@ -116,8 +116,8 @@ Exemplo de matriz para uma biblioteca Java multi-módulo:
 | Norma | Decisão | Local de aplicação | Evidência |
 | --- | --- | --- | --- |
 | Codificação e Java | aplicar | `src` ou package de produção | há código Java |
-| Testes | aplicar em subdiretório | `src/test/java` e recursos de teste | há testes e fixtures |
-| i18n | aplicar em subdiretório | package de resolver e bundles | há resolver e `.properties` |
+| Testes | aplicar em subdiretório | `src/test/java` para código; `src/AGENTS.md` com critério para recursos de teste | há testes e fixtures |
+| i18n | aplicar em subdiretório | package de resolver; `src/AGENTS.md` com critério para bundles | há resolver e `.properties` |
 | Exposição HTTP | aplicar em subdiretório | package de adaptadores HTTP | há advice/handler HTTP |
 | Endpoints HTTP | não aplicar | nenhum | a biblioteca não expõe endpoints próprios |
 | Dependências entre módulos e build Gradle | aplicar | raiz | o Gradle declara módulos e dependências; especialistas selecionados sem pressupor a topologia do agregador completo |
@@ -126,6 +126,8 @@ Exemplo de matriz para uma biblioteca Java multi-módulo:
 
 - Coloque na raiz somente normas transversais ao projeto: operação global,
   identificação multiprojeto, documentação e fronteiras entre módulos.
+  Normas de recursos também podem ser referenciadas na raiz, desde que tenham
+  critérios explícitos restritos aos recursos correspondentes.
 - Em projetos Java, `src/main` e `src/main/java` devem conter apenas packages
   e classes de produção; não crie `AGENTS.md` nesses diretórios.
 - Para normas Java comuns a toda a árvore de fontes, use `src/AGENTS.md`.
@@ -133,12 +135,20 @@ Exemplo de matriz para uma biblioteca Java multi-módulo:
   produção correspondente.
 - Coloque normas de testes em `src/test`, `src/test/java` ou em um módulo de
   testes, nunca na árvore principal quando elas não forem úteis ali.
-- Coloque normas de recursos em `src/main/resources` ou `src/test/resources`
-  apenas quando houver recursos do assunto, como bundles i18n ou fixtures.
+- Não crie nem mantenha `AGENTS.md` ou `AGENTS.*.md` em
+  `src/main/resources`, `src/test/resources` ou suas subpastas. A proibição
+  também vale para outros diretórios configurados como recursos no build,
+  para evitar que instruções de agentes sejam incluídas nos artefatos.
+- Declare as referências normativas de recursos em `src/AGENTS.md` ou no
+  `AGENTS.md` da raiz, fora dos diretórios de recursos. Use critérios explícitos
+  de diretório, tipo de arquivo ou atividade para bundles i18n, configurações,
+  fixtures e outros recursos presentes, sem ativar essas normas para toda a
+  árvore. Não use exclusões no build como substituto dessa organização.
 - Coloque normas de HTTP somente na fronteira que implementa HTTP, como
   `api`, `controller`, `web`, `rest` ou outro package equivalente.
 - Coloque normas de configuração somente onde são criadas ou mantidas
-  configurações do projeto.
+  configurações do projeto. Para configurações em diretórios de recursos,
+  use a composição ancestral com critérios de escopo descrita acima.
 - Não crie `AGENTS.md` em diretório vazio, módulo agregador sem conteúdo ou
   pasta que não tenha uma responsabilidade diferente da pasta ancestral.
 - Evite repetir uma composição em packages filhos quando ela já é integralmente
@@ -217,8 +227,10 @@ também:
   subdiretórios de teste devem acrescentar somente as normas próprias de teste,
   sem repetir a composição Java herdada.
 - Em testes Java, acrescente as normas de testes ao conjunto Java. Recursos de
-  teste devem receber apenas as normas relacionadas a fixtures, mensagens ou
-  outros recursos presentes.
+  teste devem receber, por referências com critérios explícitos em
+  `src/AGENTS.md` ou na composição raiz, apenas as normas relacionadas a
+  fixtures, mensagens ou outros recursos presentes. Não crie composições
+  dentro dos diretórios de recursos.
 
 Modelo para `modulo/src/AGENTS.md`:
 
@@ -281,17 +293,23 @@ Antes de modificar adaptadores HTTP de exceções nesta pasta, leia também:
 - `../../../../.agents/exceptions/AGENTS.exceptions.http-exposure.md`
 ```
 
-Modelo para bundles de mensagens:
+Modelo para `modulo/src/AGENTS.md` quando o escopo exigir apenas normas de
+bundles de mensagens. Se já houver composição Java nesse arquivo, incorpore
+a seção de recursos ao arquivo existente:
 
 ```md
-# Instruções de Recursos Internacionalizados
+# Instruções de Recursos
 
 As referências abaixo são relativas a este arquivo. Como ponto de referência,
 considere a raiz do projeto.
 
-Antes de modificar bundles de mensagens nesta pasta, leia também:
+## Recursos internacionalizados
 
-- `../../../../../.agents/i18n/AGENTS.i18n.messages.md`
+Antes de analisar, revisar, planejar ou modificar bundles de mensagens em
+`main/resources` ou `test/resources` e suas subpastas, relativos a este
+arquivo, leia também:
+
+- `../../../.agents/i18n/AGENTS.i18n.messages.md`
 ```
 
 ## Criação e evolução de normas especialistas
@@ -359,6 +377,10 @@ Antes de modificar bundles de mensagens nesta pasta, leia também:
   segundo, suas instruções devem ser carregadas antes da nova atividade.
 - Revise ao menos um exemplo representativo de cada escopo criado: raiz,
   código principal, testes, recursos e uma fronteira técnica especializada.
+- Confirme que `src/main/resources`, `src/test/resources`, outros diretórios
+  configurados como recursos e suas subpastas não contêm `AGENTS.md` nem
+  `AGENTS.*.md`. Confira que as normas desses recursos são alcançadas pela
+  composição ancestral, com critérios explícitos para o escopo correspondente.
 - Confirme que nenhuma norma de protocolo, banco, framework ou teste foi
   posicionada em árvore que não contenha essa responsabilidade.
 - Confirme que diretórios vazios e módulos puramente agregadores não receberam
@@ -373,6 +395,8 @@ Antes de modificar bundles de mensagens nesta pasta, leia também:
 
 - Um projeto está organizado quando uma pessoa ou IA consegue começar por seu
   `AGENTS.md` raiz, seguir as referências normativas aplicáveis e encontrar em
-  cada pasta somente as normas necessárias para modificar seu conteúdo corretamente.
+  cada escopo somente as normas necessárias para modificar seu conteúdo
+  corretamente. Diretórios de recursos recebem suas instruções por composição
+  ancestral, sem arquivos AGENTS dentro deles.
 - A redução de contexto deve vir da composição precisa, e nunca da omissão de
   uma norma materialmente aplicável.
