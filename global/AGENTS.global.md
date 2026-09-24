@@ -70,7 +70,6 @@ composição de normas.
 - Arquivos `AGENTS.*.md` de planejamento operacional não devem ser criados em subdiretórios como `docs/`, `docs/plans/` ou equivalentes, salvo instrução explícita do usuário autorizando uma exceção.
 - A regra de prefixo `FEEDBACK.` permanece obrigatória para arquivos `.md` de resposta, análise, relatório ou feedback que não tenham função de instrução, planejamento operacional ou norma de agente.
 - Arquivos `FEEDBACK.*.md` podem ser ignorados pelo git de forma intencional; isso é comportamento esperado e não deve ser tratado como problema.
-- Em ambos os casos, `AGENTS.*.md` e `FEEDBACK.*.md`, o git pode ignorar esses arquivos, e esse comportamento é desejado.
 
 # Diretrizes Globais
 

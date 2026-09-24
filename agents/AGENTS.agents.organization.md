@@ -385,9 +385,7 @@ arquivo, leia também:
   posicionada em árvore que não contenha essa responsabilidade.
 - Confirme que diretórios vazios e módulos puramente agregadores não receberam
   instruções redundantes.
-- Inspecione os arquivos diretamente no filesystem. Arquivos de instrução podem
-  ser ignorados pelo git, portanto a ausência no `git status` ou `git diff` não
-  é evidência de que a alteração não existe.
+- Inspecione os arquivos diretamente no filesystem para validar seu conteúdo atual.
 - Documente no fechamento quais normas foram aplicadas, quais foram excluídas
   por incompatibilidade e quais validações estruturais foram executadas.
 
