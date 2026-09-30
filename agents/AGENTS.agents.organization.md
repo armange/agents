@@ -31,8 +31,8 @@
   de contexto, a IA verifique obrigatoriamente quais instruções precisa ler.
   A verificação parte da raiz e percorre os `AGENTS.md` aplicáveis até a área
   envolvida, antes de analisar, revisar, planejar ou modificar seu conteúdo.
-- Arquivos de plano operacional e relatórios não são normas permanentes. Devem
-  seguir suas regras de nomenclatura e localização próprias, sem serem usados
+- Arquivos `PLAN.*.md` de plano operacional e `FEEDBACK.*.md` de relatório não
+  são normas permanentes. Devem seguir suas regras próprias, sem serem usados
   para substituir um `AGENTS.md` de composição.
 - Todo projeto com arquivos de código, de qualquer linguagem, deve citar
   normativamente `AGENTS.coding.suffixes.md` em uma composição `AGENTS.md`

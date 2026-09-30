@@ -7,6 +7,19 @@
 - Todo documento Markdown operacional deve descrever o estado atual do sistema, nao o historico de implementacao.
 - Arquivos `AGENTS***.md` sao excecao a estas regras de formatacao de Markdown; eles existem para leitura e aplicacao por IA e devem priorizar clareza normativa em vez de convencoes de sumario, ancoras e retorno ao sumario.
 
+## Especialistas de README
+
+Antes de analisar, revisar, planejar ou modificar uma coleção de READMEs
+temáticos, avaliar a divisão de um README ou usar outra coleção como referência
+estrutural, leia e aplique:
+
+- `AGENTS.markdown.readme-collection.md`
+
+Antes de analisar, revisar, planejar ou modificar a documentação de módulos em
+um projeto organizado em módulos com responsabilidades próprias, leia e aplique:
+
+- `AGENTS.markdown.module-readme.md`
+
 ## Estrutura esperada
 
 - O documento Markdown deve iniciar com o titulo do projeto em H1; quando o nome do projeto for seu identificador canonico, use `# nome-do-projeto`.

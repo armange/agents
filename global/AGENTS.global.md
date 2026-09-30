@@ -10,6 +10,13 @@ também:
 As regras desse arquivo são requisitos obrigatórios para a organização e a
 composição de normas.
 
+## Planos de desenvolvimento em arquivo
+
+Antes de criar, revisar, renomear ou modificar um plano de desenvolvimento ou
+planejamento operacional em arquivo Markdown, leia e aplique:
+
+- `../agents/AGENTS.agents.development-plans.md`
+
 ## Operação de normas
 
 - Antes de cada novo trabalho, a IA deve obrigatoriamente verificar quais
@@ -65,9 +72,7 @@ composição de normas.
 - Não é aceitável alterar parcialmente uma norma deixando o texto completo com interpretações concorrentes.
 - Se a IA não conseguir verificar todos os pontos relacionados, deve informar explicitamente a limitação antes de concluir a atividade.
 - Arquivos `FEEDBACK.*.md` devem ser usados para respostas, análises, relatórios, feedbacks e documentos equivalentes solicitados pelo usuário.
-- Arquivos `AGENTS.*.md` podem ser usados para planejamentos variáveis e temporários ou para normas persistentes e duradouras.
-- Arquivos `AGENTS.*.md` de planejamento operacional devem ser criados na raiz do projeto ao qual pertencem.
-- Arquivos `AGENTS.*.md` de planejamento operacional não devem ser criados em subdiretórios como `docs/`, `docs/plans/` ou equivalentes, salvo instrução explícita do usuário autorizando uma exceção.
+- Arquivos `AGENTS.*.md` são reservados a normas especializadas; planos em arquivo seguem o especialista de planos citado acima.
 - A regra de prefixo `FEEDBACK.` permanece obrigatória para arquivos `.md` de resposta, análise, relatório ou feedback que não tenham função de instrução, planejamento operacional ou norma de agente.
 - Arquivos `FEEDBACK.*.md` podem ser ignorados pelo git de forma intencional; isso é comportamento esperado e não deve ser tratado como problema.
 
