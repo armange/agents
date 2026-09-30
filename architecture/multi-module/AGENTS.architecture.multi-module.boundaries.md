@@ -6,7 +6,7 @@
 - Cada módulo deve ter uma responsabilidade arquitetural clara.
 - Um módulo não deve existir apenas para refletir um package se isso não criar uma fronteira útil de dependência, publicação, teste ou reutilização.
 - A direção das dependências entre módulos deve preservar a direção das camadas.
-- O domínio deve continuar independente de frameworks, protocolos, banco de dados, mensageria, HTTP, JPA, Spring e implementações concretas.
+- O domínio deve continuar independente de frameworks, protocolos, banco de dados, mensageria, HTTP, JPA, Spring e implementações concretas de infraestrutura, integração ou borda.
 - Implementações de infraestrutura devem depender dos contratos do domínio, nunca o contrário.
 - O módulo que monta a aplicação pode depender de múltiplos módulos concretos, mas essa permissão é exclusiva de composição e não deve ser usada como precedente para os demais módulos.
 - Toda dependência entre módulos deve representar uma colaboração real e justificável.

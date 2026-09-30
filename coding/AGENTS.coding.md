@@ -8,6 +8,7 @@ Antes de analisar, revisar, planejar ou modificar código sujeito a estas normas
 - `AGENTS.coding.unit-cohesion.md`
 - `AGENTS.coding.operation-design.md`
 - `AGENTS.coding.semantic-naming.md`
+- `AGENTS.coding.suffixes.md`
 - `AGENTS.coding.data-contract-naming.md`
 - `AGENTS.coding.operation-semantics.md`
 

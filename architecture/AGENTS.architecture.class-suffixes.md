@@ -32,6 +32,7 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
   de consultar referências ou produzir efeitos colaterais.
 - `Api`, `Controller`, `Config` e `EventListener` representam as
   responsabilidades de aplicação correspondentes.
+- Para novos endpoints HTTP em `application`, prefira classes `Controller` em `application.controller`. O uso de `Api` em `application.api` para essa responsabilidade é desencorajado, sem migração automática dos nomes existentes.
 - `Client` representa comunicação de saída com sistema externo ou serviço
   independente.
 - `Input` e `Output` representam adaptadores de integração de entrada e
@@ -39,10 +40,9 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
 
 ## Domínio e dados
 
-- `Service` representa colaboração de domínio ou implementação técnica fora
-  da orquestração de aplicação.
-- `Policy` representa decisão de negócio reutilizável; não use esse sufixo
-  apenas porque a classe rejeita uma entrada.
+- `Service` representa um contrato ou colaboração coesa do domínio, ou implementação técnica fora da orquestração de aplicação. No domínio, pode coordenar policies e outros colaboradores para executar uma operação. Pode manter decisões pequenas e inseparáveis dessa operação, mas não concentrar regras independentes.
+- `Policy` representa uma decisão de negócio especializada e coesa, com significado próprio e potencial de reutilização. A decisão não precisa já ter múltiplos consumidores. Não use esse sufixo apenas porque a classe rejeita uma entrada.
+- Escolha entre `Policy` e `Service` pela responsabilidade principal, não pela quantidade ou complexidade das decisões.
 - `<Contexto><Regra>Validation` valida uma única regra de negócio, invariante
   ou conjunto coeso de referências já resolvidas.
 - `Resolver` resolve referência, seleção ou valor conhecido sem decidir
@@ -50,6 +50,8 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
 - `Factory` cria ou inicializa modelos; `Mapper` converte representações.
 - `Repository` representa contrato de repositório do domínio.
 - `Dto` representa contrato de dados interno ou de cliente.
+- Em `client.dto`, `RequestDto` e `ResponseDto` são finais de nome permitidos quando distinguem formatos de requisição e resposta exigidos pelo terceiro. O nome deve identificar a operação ou o provedor quando isso for necessário para evitar ambiguidade; por exemplo, `ProviderTokenRequestDto` e `ProviderTokenResponseDto`. O sufixo `Dto` continua opcional e não deve ser exigido apenas pela localização no package.
+- As mesmas permissões de nome de `client.dto` valem para seus subpackages por provedor, quando usados.
 - Entidades de domínio não usam o sufixo `Entity`.
 - `Support`, `Command`, `Context`, `Mode`, `Names` e `Types` são sufixos
   permitidos para estruturas de suporte de domínio que exerçam exatamente a
@@ -76,6 +78,7 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
 - Não use `UseCase` em classes ou interfaces próprias; casos de uso são
   operações de um `ApplicationService`.
 - Não use `Configuration`; o sufixo padronizado é `Config`.
+- É proibido usar as combinações `PolicyService` e `ServicePolicy` em nomes de classes e interfaces, pois elas deixam ambígua a responsabilidade. Use `Policy` para uma decisão de negócio especializada e `Service` para uma colaboração ou operação coesa.
 
 ## Exemplos
 

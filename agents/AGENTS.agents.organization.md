@@ -34,6 +34,10 @@
 - Arquivos de plano operacional e relatórios não são normas permanentes. Devem
   seguir suas regras de nomenclatura e localização próprias, sem serem usados
   para substituir um `AGENTS.md` de composição.
+- Todo projeto com arquivos de código, de qualquer linguagem, deve citar
+  normativamente `AGENTS.coding.suffixes.md` em uma composição `AGENTS.md`
+  aplicável a todos esses arquivos. A leitura antes do desenvolvimento é
+  obrigatória; o uso de sufixo não é.
 
 ## Tipos de referência na composição
 
@@ -116,6 +120,7 @@ Exemplo de matriz para uma biblioteca Java multi-módulo:
 | Norma | Decisão | Local de aplicação | Evidência |
 | --- | --- | --- | --- |
 | Codificação e Java | aplicar | `src` ou package de produção | há código Java |
+| Avaliação de sufixos | aplicar | raiz, com critério para código | há código em qualquer linguagem; sufixo não é obrigatório |
 | Testes | aplicar em subdiretório | `src/test/java` para código; `src/AGENTS.md` com critério para recursos de teste | há testes e fixtures |
 | i18n | aplicar em subdiretório | package de resolver; `src/AGENTS.md` com critério para bundles | há resolver e `.properties` |
 | Exposição HTTP | aplicar em subdiretório | package de adaptadores HTTP | há advice/handler HTTP |
@@ -128,6 +133,9 @@ Exemplo de matriz para uma biblioteca Java multi-módulo:
   identificação multiprojeto, documentação e fronteiras entre módulos.
   Normas de recursos também podem ser referenciadas na raiz, desde que tenham
   critérios explícitos restritos aos recursos correspondentes.
+- Em projetos com código, cite `AGENTS.coding.suffixes.md` na raiz com critério
+  para código de qualquer linguagem. Se a citação ficar em composições locais,
+  confirme que todas as árvores de código estejam cobertas.
 - Em projetos Java, `src/main` e `src/main/java` devem conter apenas packages
   e classes de produção; não crie `AGENTS.md` nesses diretórios.
 - Para normas Java comuns a toda a árvore de fontes, use `src/AGENTS.md`.
@@ -206,6 +214,13 @@ Antes de analisar, revisar, planejar ou modificar este projeto, leia também:
 Antes de modificar documentação Markdown deste projeto, leia também:
 
 - `../.agents/readme/AGENTS.markdown.md`
+
+## Nomenclatura de código
+
+Antes de analisar, revisar, planejar ou modificar código de qualquer linguagem
+neste projeto, leia e aplique:
+
+- `../.agents/coding/AGENTS.coding.suffixes.md`
 
 ## Arquitetura multi-módulo
 
@@ -350,6 +365,10 @@ arquivo, leia também:
   as composições locais aplicáveis foram carregadas antes de qualquer outro
   trabalho solicitado. A descoberta inicial deve ter servido à organização
   das instruções e preservado as regras já existentes nos diretórios envolvidos.
+- Em projetos com código, confirme que a referência normativa à avaliação
+  de sufixos alcance todos os arquivos de código e exija sua leitura antes do
+  desenvolvimento. A ausência de classes não dispensa a citação; a avaliação
+  pode concluir que nenhum sufixo se aplica.
 - Verifique que cada referência normativa nos arquivos novos ou alterados aponta
   para arquivo existente a partir do diretório que a contém. Referências
   informativas a documentos reais devem ser corretas; nomes hipotéticos em

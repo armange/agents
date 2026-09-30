@@ -31,6 +31,9 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
 - Grupos de regras que representem contratos ou orquestrações coesas de caso
   de uso do domínio devem ficar preferencialmente sob
   `domain.service.<contexto>`.
+- Um service de domínio pode combinar decisões especializadas em uma operação coesa, mas não implementar nele regras independentes; estas exigem classes dedicadas.
+- Decisões locais pequenas e inseparáveis da mesma regra podem permanecer no service responsável pela operação. Se a decisão tiver significado próprio ou puder ser aplicada em outro fluxo, deve ficar em classe dedicada.
+- A complexidade de uma decisão e a quantidade de decisões coordenadas pelo service não determinam, por si, a classificação como policy ou service.
 - Packages como `domain.support.<contexto>` devem ser reservados para suportes reutilizáveis, utilitários de domínio e estruturas compartilhadas; não devem ser a casa principal de decisões de negócio.
 - Quando uma regra de negócio for complexa demais para uma única classe simples, a implementação pode usar orquestradores, desde que cada parte orquestrada continue coesa e dedicada a uma responsabilidade clara.
 - Não deve: manter múltiplas regras de negócio independentes na mesma classe.

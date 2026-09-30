@@ -15,6 +15,13 @@ Antes de analisar, revisar, planejar ou modificar este projeto, leia e aplique:
 A norma global define a verificação obrigatória a cada novo trabalho e mudança
 de contexto e o carregamento das normas de manutenção dos AGENTS quando aplicáveis.
 
+## Nomenclatura de código
+
+Antes de analisar, revisar, planejar ou modificar código de qualquer linguagem
+neste projeto, leia e aplique:
+
+- `coding/AGENTS.coding.suffixes.md`
+
 ## Documentação de uso e relatórios
 
 Antes de analisar, revisar, planejar ou modificar documentação de uso ou

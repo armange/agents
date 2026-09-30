@@ -31,12 +31,15 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
   `application.event` recebem, respectivamente, APIs, controllers,
   configurações da aplicação e listeners de eventos. APIs e controllers de
   `application` pertencem ao próprio sistema.
+- Para novos endpoints HTTP, prefira `application.controller` como caminho único de entrada. Desencoraje `application.api` para essa responsabilidade; sua existência anterior não exige migração automática.
 - `application.service.<contexto>` contém o
   `<Contexto>ApplicationService`; `application.validation.<contexto>` contém
   o `<Contexto>InputValidation`.
-- `client` contém adaptadores síncronos de entrada e saída para terceiros;
-  `client.dto` contém seus formatos técnicos de dados e
+- `client` contém adaptadores HTTP síncronos de saída para terceiros;
+  `client.dto` contém os formatos de requisição e resposta exigidos pelo contrato do terceiro, inclusive os específicos de cada provedor, e
   `client.<tecnologia>.config`, a configuração da tecnologia usada.
+- Subpackages de `client.dto` por provedor, como `client.dto.<provedor>`, são permitidos quando ajudam a organizar contratos externos, mas não são obrigatórios. Seus tipos preservam as responsabilidades, o isolamento e as regras de nomenclatura de `client.dto`.
+- Classes fora de `client` não acessam `client.dto`; o adaptador traduz esses formatos para tipos do domínio antes de colaborar com outras camadas.
 - `integration` é a raiz de adaptadores de integração; `integration.input` e
   `integration.output` contêm, respectivamente, adaptadores de fluxos
   autônomos de entrada e saída. Suas configurações ficam em
