@@ -34,10 +34,11 @@
 ### Domínio
 
 - `domain.model` contém modelos e formatos internos; não depende de outra camada.
-- `domain.service` contém contratos, invariantes e colaborações coesas de domínio, inclusive implementações internas que coordenem policies, supports e contratos de saída para executar uma operação. Pode conter decisões locais inseparáveis dessa operação, mas não acumular regras de negócio independentes.
-- `domain.policy` contém decisões de negócio especializadas e coesas, com significado próprio e potencial de reutilização. Essas decisões podem ser implementadas em classes concretas do próprio domínio.
-- `domain.service` e `domain.policy` podem decidir a semântica de dados já representados por tipos do domínio, mas não traduzem DTOs de terceiros nem dependem de `client.dto`.
-- `domain.support` contém somente estruturas e utilitários reutilizáveis; pode depender de `domain.model` e de outros supports, mas não de `domain.policy` nem de `domain.service`.
+- `domain.service` contém contratos, invariantes e colaborações coesas de domínio, inclusive implementações internas que coordenem policies, a API pública de features, supports e contratos de saída para executar uma operação. Pode conter decisões locais inseparáveis dessa operação, mas não acumular regras de negócio independentes.
+- `domain.policy` contém decisões de negócio especializadas e coesas, com significado próprio e potencial de reutilização. Essas decisões podem ser implementadas em classes concretas do próprio domínio e usar a API pública de uma feature para compor outra decisão, sem executar efeitos externos.
+- `domain.feature` contém, quando adotada, a composição encapsulada de classes de domínio necessárias a um comportamento de negócio coeso. Sua entrada pública ocupa o mesmo nível arquitetural de `domain.service`; seus colaboradores internos não são pontos de acesso de outras camadas. A feature não executa efeitos externos, inclusive por contratos de saída.
+- `domain.service`, `domain.policy` e `domain.feature` podem decidir a semântica de dados já representados por tipos do domínio, mas não traduzem DTOs de terceiros nem dependem de `client.dto`.
+- `domain.support` contém somente estruturas e utilitários reutilizáveis; pode depender de `domain.model` e de outros supports, mas não de `domain.policy`, `domain.service` nem `domain.feature`.
 - Contratos de acesso a persistência, serviços externos e publicação pertencem ao domínio. Todo contrato de saída fica em `domain.integration.output`.
 - Modelos de entrada e saída do próprio domínio podem ser concretos.
 
@@ -58,13 +59,14 @@
 Dependências permitidas:
 
 - `application` → `domain`;
-- Dentro da entrada HTTP, `application.controller` e `application.api` → somente `domain.model.dto` e `domain.service` no acesso direto ao domínio; não devem acessar diretamente `domain.policy`, repositories nem outros packages do domínio. A permissão geral de `application` → `domain` não amplia essa restrição específica.
-- `persistence` → `domain`;
-- `client` → `domain.model` e `domain.integration.output`; não acessa `domain.service` para executar chamadas HTTP de saída.
-- `integration.input` → `domain.model` e `domain.service`;
+- Dentro da entrada HTTP, `application.controller` e `application.api` → somente `domain.model.dto`, `domain.service` e a API pública de `domain.feature` no acesso direto ao domínio; não devem acessar diretamente `domain.policy`, repositories nem outros packages do domínio. A permissão geral de `application` → `domain` não amplia essa restrição específica.
+- `persistence` → `domain`; pode usar tipos públicos de resultado da feature quando necessários à adaptação de dados, mas não executa sua entrada pública;
+- `client` → `domain.model` e `domain.integration.output`; não acessa `domain.service` nem `domain.feature` para executar chamadas HTTP de saída.
+- `integration.input` → `domain.model`, `domain.service` e a API pública de `domain.feature`;
 - `integration.output` → `domain.model` e `domain.integration.output`;
-- `domain.service` → `domain.model`, `domain.policy`, `domain.support` e `domain.integration.output`;
-- `domain.policy` → `domain.model` e `domain.support`;
+- `domain.service` → `domain.model`, `domain.policy`, `domain.support`, `domain.integration.output` e a API pública de `domain.feature`;
+- `domain.feature` → `domain.model`, `domain.support` e classes do próprio package; não acessa `domain.integration.output` nem outras features;
+- `domain.policy` → `domain.model`, `domain.support` e a API pública de `domain.feature`;
 - `domain.support` → `domain.model` e `domain.support`.
 
 - Uma dependência não listada é proibida.

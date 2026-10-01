@@ -42,6 +42,7 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
 
 - `Service` representa um contrato ou colaboração coesa do domínio, ou implementação técnica fora da orquestração de aplicação. No domínio, pode coordenar policies e outros colaboradores para executar uma operação. Pode manter decisões pequenas e inseparáveis dessa operação, mas não concentrar regras independentes.
 - `Policy` representa uma decisão de negócio especializada e coesa, com significado próprio e potencial de reutilização. A decisão não precisa já ter múltiplos consumidores. Não use esse sufixo apenas porque a classe rejeita uma entrada.
+- `Feature` identifica a única classe ou interface pública de entrada de uma feature de domínio adotada para encapsular a colaboração de várias classes. Recebe dados e devolve um resultado; não substitui `Service` ou `Policy` para regras que caibam nessas unidades.
 - Escolha entre `Policy` e `Service` pela responsabilidade principal, não pela quantidade ou complexidade das decisões.
 - `<Contexto><Regra>Validation` valida uma única regra de negócio, invariante
   ou conjunto coeso de referências já resolvidas.
@@ -84,6 +85,9 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
 
 ```java
 public class SaleApplicationService {
+}
+
+public interface ApproveSaleFeature {
 }
 
 public class SaleInputValidation {

@@ -23,5 +23,5 @@ nem autoriza ampliar as permissões da arquitetura adotada.
 
 ## Precedência
 
-- Regras arquiteturais mais específicas para policies, services, adapters,
+- Regras arquiteturais mais específicas para policies, services, features, adapters,
   repositories, bordas ou outros componentes prevalecem sobre esta norma geral.

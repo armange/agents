@@ -1,13 +1,18 @@
 # Arquitetura Multi-module: Dependências
 
 - `application` pode depender de `domain` ou `domain-api`.
-- Essa dependência entre módulos não autoriza acesso irrestrito das classes de entrada HTTP: em `application.controller` ou `application.api`, o acesso direto ao domínio fica limitado a `domain.model.dto` e `domain.service`.
+- Essa dependência entre módulos não autoriza acesso irrestrito das classes de entrada HTTP: em `application.controller` ou `application.api`, o acesso direto ao domínio fica limitado a `domain.model.dto`, `domain.service` e à API pública de `domain.feature`.
 - `integration-input` pode depender de `domain` ou `domain-api`.
 - `persistence` pode depender de `domain` ou `domain-api`.
-- `client` pode depender dos tipos de domínio necessários à tradução e dos contratos de saída definidos pelo domínio ou por um módulo de contratos explicitamente definido; não deve depender de `domain.service`.
-- Nenhum módulo de produção fora de `client` deve depender de seus DTOs de terceiros, inclusive módulos de domínio com services ou policies e módulos de persistência. A comunicação entre eles usa contratos e tipos do domínio.
+- `persistence` pode usar tipos públicos de resultado de uma feature para adaptar dados, mas não deve executar a entrada pública da feature.
+- `client` pode depender dos tipos de domínio necessários à tradução e dos contratos de saída definidos pelo domínio ou por um módulo de contratos explicitamente definido; não deve depender de `domain.service` nem da entrada pública de `domain.feature`.
+- Nenhum módulo de produção fora de `client` deve depender de seus DTOs de terceiros, inclusive módulos de domínio com services, policies ou features e módulos de persistência. A comunicação entre eles usa contratos e tipos do domínio.
 - `integration-output` pode depender de `domain` ou contratos de saída definidos pelo domínio.
 - `domain-impl` pode depender de `domain-api`, quando houver separação entre API e implementação do domínio.
+- Um módulo dedicado a uma feature é um módulo de domínio: pode depender de tipos compartilhados do domínio, mas não de módulos de aplicação, persistência, cliente, integração ou de outra feature.
+- Módulos de domínio com services ou policies podem depender do módulo dedicado
+  a uma feature para consumir somente sua API pública, desde que não formem um
+  ciclo de dependências.
 - `runtime` ou `bootstrap` pode depender de módulos de entrada, domínio, persistência, cliente e integração necessários para montar a aplicação.
 - Módulos de teste podem depender dos módulos necessários ao escopo do teste, sem publicar dependências de teste como contrato de produção.
 - `domain` não deve depender de `application`.

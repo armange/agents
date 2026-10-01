@@ -55,6 +55,11 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
   `domain.validation.<contexto>` contém validações de regras de negócio;
   `domain.service.<contexto>` contém contratos e colaborações coesas de
   domínio.
+- `domain.feature.<nome>` contém, quando a estrutura de feature for adotada,
+  uma única feature de domínio e todos os seus tipos próprios no mesmo package,
+  sem subpackages. Services, policies, validações e DTOs internos dessa feature
+  ficam nesse package; as localizações canônicas acima continuam válidas fora
+  de features.
 - `domain.support.<contexto>` é reservado a estruturas de suporte
   reutilizáveis e não recebe policies ou validações de negócio.
 - `domain.integration` contém contratos de integração pertencentes ao domínio;

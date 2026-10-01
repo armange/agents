@@ -20,8 +20,12 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
   interfaces. Por exemplo, `SaleApplicationService` pode expor `create`,
   `approve`, `reject` e `cancel`.
 - O `ApplicationService` deve coordenar validação de entrada, resolução de
-  dependências, chamadas a policies e serviços especializados, persistência
-  por contratos do domínio e limites transacionais necessários ao caso de uso.
+  dependências, chamadas a policies, serviços especializados e features quando
+  adotadas, persistência por contratos do domínio e limites transacionais
+  necessários ao caso de uso. Pode chamar uma feature diretamente ou delegar
+  sua chamada a um service ou uma policy de domínio. Quando houver efeitos
+  externos após o resultado, coordena sua execução diretamente ou por um
+  service de domínio que use contratos de saída.
 - O `ApplicationService` não deve concentrar regra de negócio; decisões de
   domínio devem ser delegadas a classes especializadas da camada de domínio.
 
@@ -55,4 +59,5 @@ public class SaleApplicationService {
 - `InputValidation`s devem ficar em `application.validation.<contexto>`.
 - `Validation`s de regra de negócio devem ficar em
   `domain.validation.<contexto>`; policies de decisão continuam em
-  `domain.policy.<contexto>`.
+  `domain.policy.<contexto>`. Quando essas classes forem colaboradores internos
+  de uma feature adotada, ficam no package único dessa feature.

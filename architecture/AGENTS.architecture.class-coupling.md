@@ -55,7 +55,7 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
 
 - Adaptações técnicas exigidas por frameworks podem existir na borda ou na
   infraestrutura, desde que não vazem para o domínio.
-- Normas mais específicas de policies, services, persistência, clientes,
+- Normas mais específicas de policies, services, features, persistência, clientes,
   integrações e localização de classes prevalecem sobre esta norma geral
   somente quando compatíveis com as responsabilidades e direções de
   dependência da arquitetura base.

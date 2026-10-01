@@ -31,7 +31,15 @@ permitidas pela base. Camadas opcionais só devem existir quando necessárias
 - Grupos de regras que representem contratos ou orquestrações coesas de caso
   de uso do domínio devem ficar preferencialmente sob
   `domain.service.<contexto>`.
+- Quando vários colaboradores especializados compuserem um único comportamento
+  coeso de domínio, eles podem ser encapsulados em uma feature. Essa estrutura
+  é opcional: regras que caibam em um service ou policy continuam nessas
+  unidades. Na feature adotada, as classes dedicadas ficam juntas em
+  `domain.feature.<nome>`, sem deixar de ser coesas e especializadas.
 - Um service de domínio pode combinar decisões especializadas em uma operação coesa, mas não implementar nele regras independentes; estas exigem classes dedicadas.
+- Services e policies de domínio podem compor suas operações ou decisões com a
+  API pública de uma feature. O service pode encaminhar o resultado por um
+  contrato de saída do domínio; a policy deve permanecer sem efeitos externos.
 - Decisões locais pequenas e inseparáveis da mesma regra podem permanecer no service responsável pela operação. Se a decisão tiver significado próprio ou puder ser aplicada em outro fluxo, deve ficar em classe dedicada.
 - A complexidade de uma decisão e a quantidade de decisões coordenadas pelo service não determinam, por si, a classificação como policy ou service.
 - Packages como `domain.support.<contexto>` devem ser reservados para suportes reutilizáveis, utilitários de domínio e estruturas compartilhadas; não devem ser a casa principal de decisões de negócio.

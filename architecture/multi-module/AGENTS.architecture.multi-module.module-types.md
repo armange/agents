@@ -1,8 +1,9 @@
 # Arquitetura Multi-module: Tipos de Módulos
 
 - Módulo de domínio: contratos, modelos, políticas, regras de negócio, portas e abstrações do domínio.
-- O módulo de domínio pode conter implementações concretas de services, policies e outras regras de negócio, desde que permaneçam independentes de detalhes tecnológicos externos.
-- Um módulo de domínio pode conter packages como `domain.model`, `domain.service`, `domain.policy`, `domain.validation`, `domain.support`, `domain.port` ou equivalentes já adotados pelo projeto.
+- O módulo de domínio pode conter implementações concretas de services, policies, features e outras regras de negócio, desde que permaneçam independentes de detalhes tecnológicos externos.
+- Um módulo de domínio pode conter packages como `domain.model`, `domain.service`, `domain.policy`, `domain.validation`, `domain.support`, `domain.feature`, `domain.port` ou equivalentes já adotados pelo projeto.
+- Uma feature pode ocupar sozinha um módulo de domínio quando isso criar uma fronteira útil; o módulo mantém somente a feature como responsabilidade de produção e publica apenas sua entrada e os tipos de dados necessários à API.
 - Um módulo de domínio deve publicar apenas contratos e tipos de domínio que outros módulos precisam consumir.
 - A restrição de publicação limita a API oferecida a outros módulos; não exige que as classes internas do domínio sejam apenas interfaces ou abstrações.
 - Um módulo de domínio não deve depender de módulos de aplicação, persistência, cliente, integração, bootstrap ou runtime.
@@ -10,7 +11,7 @@
 - Um módulo de aplicação ou entrada expõe operações do domínio por um mecanismo de entrada, como HTTP, CLI, job acionado externamente ou mensageria de entrada.
 - Chamadas HTTP recebidas para operar recursos do sistema pertencem ao módulo de aplicação, mesmo quando vêm de terceiros; callbacks HTTP autônomos, como webhooks, pertencem à integração de entrada.
 - Em módulos de entrada HTTP, prefira `application.controller` para novos endpoints; `application.api` é desencorajado para essa responsabilidade, sem migração automática das estruturas existentes.
-- Classes de entrada HTTP em `application.controller` ou `application.api` devem acessar diretamente o domínio somente por `domain.model.dto` e `domain.service`. Policies, repositories e outros packages do domínio não são pontos de acesso direto da entrada HTTP.
+- Classes de entrada HTTP em `application.controller` ou `application.api` devem acessar diretamente o domínio somente por `domain.model.dto`, `domain.service` e a API pública de `domain.feature`. Policies, repositories e outros packages do domínio não são pontos de acesso direto da entrada HTTP.
 - Um módulo de aplicação deve depender dos contratos do domínio.
 - Um módulo de aplicação deve traduzir protocolo de entrada para contratos do domínio.
 - Um módulo de aplicação não deve implementar regra de negócio, acessar persistência diretamente nem decidir política de domínio.
@@ -21,7 +22,7 @@
 - Um módulo de cliente ou integração de saída deve depender dos contratos de saída do domínio ou de um módulo de contratos explicitamente definido.
 - Um módulo de cliente ou integração de saída deve traduzir dados do domínio para o protocolo externo e traduzir respostas externas para dados do domínio.
 - O módulo de cliente mantém os DTOs de requisição e resposta exigidos pelo terceiro, inclusive formatos específicos do provedor; esses formatos não devem tornar-se contratos públicos do domínio.
-- Esses DTOs são internos ao módulo de cliente. O contrato de saída do domínio recebe e devolve somente tipos do domínio; services e policies podem decidir sobre esses dados internos, sem conhecer o formato do terceiro.
+- Esses DTOs são internos ao módulo de cliente. O contrato de saída do domínio recebe e devolve somente tipos do domínio; services, policies e features podem decidir sobre esses dados internos, sem conhecer o formato do terceiro.
 - Um módulo de cliente ou integração de saída não deve expor DTOs externos para o domínio nem implementar regra de negócio do domínio consumidor.
 - Um módulo de integração de entrada recebe dados automaticamente de sistemas, filas, tópicos, arquivos, callbacks HTTP ou outros provedores.
 - Um módulo de integração de entrada deve depender dos contratos do domínio e traduzir o formato externo recebido para dados conhecidos pelo domínio.
