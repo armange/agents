@@ -18,6 +18,11 @@ policies, validações ou features de domínio, leia e aplique:
 
 - `AGENTS.architecture.business-rule-class.md`
 
+Antes de analisar, revisar, planejar ou organizar unidades de negócio ou a
+coesão entre responsabilidades do domínio, leia e aplique:
+
+- `AGENTS.architecture.business-unit.md`
+
 ## Adaptação de sistemas externos
 
 Antes de analisar, revisar, planejar ou modificar clientes, integrações,
