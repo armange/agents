@@ -1,22 +1,52 @@
 # Codificação
 
-Este arquivo é o ponto de composição das normas de codificação independentes de linguagem.
+Este arquivo direciona as normas de codificação independentes de linguagem
+conforme a responsabilidade envolvida no trabalho.
 
-Antes de analisar, revisar, planejar ou modificar código sujeito a estas normas, leia também:
+## Base de codificação
+
+Antes de analisar, revisar, planejar ou modificar código, leia e aplique:
 
 - `AGENTS.coding.simplicity.md`
-- `AGENTS.coding.unit-cohesion.md`
-- `AGENTS.coding.operation-design.md`
-- `AGENTS.coding.semantic-naming.md`
 - `AGENTS.coding.suffixes.md`
+
+## Unidades e operações
+
+Antes de analisar, revisar, planejar ou modificar classes, funções, métodos,
+módulos, componentes ou outras unidades de código, leia e aplique:
+
+- `AGENTS.coding.unit-cohesion.md`
+
+Antes de analisar, revisar, planejar ou modificar funções, métodos, handlers ou
+operações equivalentes, leia e aplique:
+
+- `AGENTS.coding.operation-design.md`
+
+## Nomes e contratos
+
+Antes de analisar, revisar, planejar ou modificar identificadores, leia e
+aplique:
+
+- `AGENTS.coding.semantic-naming.md`
+
+Antes de analisar, revisar, planejar ou modificar contratos de dados internos
+ou do domínio, leia e aplique:
+
 - `AGENTS.coding.data-contract-naming.md`
+
+Antes de analisar, revisar, planejar ou modificar operações de consulta,
+criação, substituição, merge, persistência ou exclusão, leia e aplique:
+
 - `AGENTS.coding.operation-semantics.md`
 
-Uma referência normativa a este arquivo ativa obrigatoriamente todas as normas
-listadas para o código no escopo citado.
+Uma referência normativa a este arquivo ativa a base e os especialistas cujos
+critérios acima forem atendidos, inclusive suas dependências normativas. Ao
+passar a trabalhar em outra responsabilidade, reavalie esses critérios.
 
 ## Composição local
 
-- Para aplicar apenas um subconjunto, o `AGENTS.md` local deve declarar referências normativas diretamente aos especialistas necessários.
-- Para aplicar este conjunto completo, o `AGENTS.md` local deve declarar uma referência normativa a este arquivo.
+- Para aplicar um subconjunto fixo que este roteamento não delimite, o
+  `AGENTS.md` local deve citar diretamente os especialistas necessários.
+- Para usar este roteamento por atividade, o `AGENTS.md` local deve declarar
+  uma referência normativa a este arquivo.
 - Este arquivo não deve receber novas regras de codificação diretamente; novas regras devem ser criadas ou movidas para um arquivo especialista.

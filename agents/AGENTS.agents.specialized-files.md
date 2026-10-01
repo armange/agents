@@ -2,13 +2,13 @@
 
 ## Organização de normas em projetos
 
-Antes de analisar, planejar ou executar a organização de normas em um projeto,
-leia também:
+Antes de analisar, planejar ou executar a organização de normas, ou de criar,
+revisar ou modificar instruções de agentes, leia e aplique:
 
 - `AGENTS.agents.organization.md`
 
-As regras desse arquivo complementam esta norma com o processo obrigatório de
-análise, distribuição, criação e validação das instruções de agentes.
+As referências desse arquivo selecionam as etapas aplicáveis de análise,
+distribuição, criação e validação das instruções de agentes.
 
 ## Estrutura e composição
 
@@ -44,8 +44,9 @@ análise, distribuição, criação e validação das instruções de agentes.
   observe os critérios de cada referência. Cadeias fora do contexto atual podem
   aguardar a atividade correspondente; normas ativadas devem ser lidas
   integralmente antes dessa atividade. Em caso de dúvida, leia a norma.
-- Para ativar apenas parte de um conjunto, o `AGENTS.md` local deve declarar
-  referências normativas diretamente e exclusivamente aos especialistas necessários.
+- Para ativar um subconjunto fixo que o agregador não delimite por critérios
+  objetivos, o `AGENTS.md` local deve declarar referências normativas direta e
+  exclusivamente aos especialistas necessários.
 - Condições materiais declaradas na norma, como uma tecnologia já configurada no projeto, continuam delimitando o seu escopo; elas não tornam facultativo o cumprimento da norma ativada.
 
 ## Ciclos e leituras anteriores
@@ -60,3 +61,15 @@ análise, distribuição, criação e validação das instruções de agentes.
 - Mesmo quando a leitura for reaproveitada, cada novo trabalho ou mudança de
   contexto exige reavaliar as referências e ler as novas dependências aplicáveis.
   Um arquivo já lido deve ter suas regras cumpridas em todos os escopos ativados.
+
+## Integridade das alterações em AGENTS
+
+- Toda alteração em arquivos `AGENTS.md` ou `AGENTS.*.md` deve preservar a coerência integral da norma modificada.
+- Ao modificar uma regra normativa, a IA deve revisar o bloco completo da norma afetada, e não apenas o trecho pontual solicitado.
+- A IA deve procurar contradições internas, repetições incompatíveis, exemplos desatualizados, listas de testes divergentes e planos derivados que continuem refletindo a regra anterior.
+- Quando uma alteração normativa mudar a semântica de uma decisão já documentada, a IA deve atualizar todos os trechos diretamente relacionados no mesmo arquivo.
+- Quando houver documentos normativos ou planos derivados que dependam da regra alterada, a IA deve apontar esses documentos e, se autorizada a alterá-los, alinhá-los na mesma atividade.
+- Não é aceitável alterar parcialmente uma norma deixando o texto completo com interpretações concorrentes.
+- Se a IA não conseguir verificar todos os pontos relacionados, deve informar explicitamente a limitação antes de concluir a atividade.
+- Arquivos `AGENTS.*.md` são reservados a normas especializadas; planos em
+  arquivo seguem o especialista de planos indicado pela norma global.

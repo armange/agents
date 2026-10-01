@@ -64,15 +64,7 @@ planejamento operacional em arquivo Markdown, leia e aplique:
 - Quando o usuário fizer uma pergunta, a IA deve responder de forma simples e textual.
 - Uma pergunta do usuário não autoriza alteração de arquivos, implementação, execução de correção ou mudança de estado.
 - Alterações em arquivos só devem ser feitas quando o usuário pedir explicitamente uma ação desse tipo.
-- Toda alteração em arquivos `AGENTS.md` ou `AGENTS.*.md` deve preservar a coerência integral da norma modificada.
-- Ao modificar uma regra normativa, a IA deve revisar o bloco completo da norma afetada, e não apenas o trecho pontual solicitado.
-- A IA deve procurar contradições internas, repetições incompatíveis, exemplos desatualizados, listas de testes divergentes e planos derivados que continuem refletindo a regra anterior.
-- Quando uma alteração normativa mudar a semântica de uma decisão já documentada, a IA deve atualizar todos os trechos diretamente relacionados no mesmo arquivo.
-- Quando houver documentos normativos ou planos derivados que dependam da regra alterada, a IA deve apontar esses documentos e, se autorizada a alterá-los, alinhá-los na mesma atividade.
-- Não é aceitável alterar parcialmente uma norma deixando o texto completo com interpretações concorrentes.
-- Se a IA não conseguir verificar todos os pontos relacionados, deve informar explicitamente a limitação antes de concluir a atividade.
 - Arquivos `FEEDBACK.*.md` devem ser usados para respostas, análises, relatórios, feedbacks e documentos equivalentes solicitados pelo usuário.
-- Arquivos `AGENTS.*.md` são reservados a normas especializadas; planos em arquivo seguem o especialista de planos citado acima.
 - A regra de prefixo `FEEDBACK.` permanece obrigatória para arquivos `.md` de resposta, análise, relatório ou feedback que não tenham função de instrução, planejamento operacional ou norma de agente.
 - Arquivos `FEEDBACK.*.md` podem ser ignorados pelo git de forma intencional; isso é comportamento esperado e não deve ser tratado como problema.
 
@@ -116,7 +108,8 @@ planejamento operacional em arquivo Markdown, leia e aplique:
 - Ao percorrer referências normativas transitivas, preserve o escopo que ativou
   a cadeia e observe os critérios explícitos de cada referência. Uma norma
   ativada deve ser cumprida integralmente no seu escopo; economia de contexto
-  não autoriza omitir dependências obrigatórias nem escolher partes de um agregador.
+  não autoriza omitir dependências obrigatórias nem escolher partes de um
+  agregador fora dos critérios que ele próprio declara.
 - Não deixe a leitura de uma referência normativa depender da conveniência do
   agente. O atendimento ao critério torna sua leitura obrigatória.
 

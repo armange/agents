@@ -113,7 +113,7 @@ Antes de analisar ou modificar código, leia também:
 - `.agents/coding/AGENTS.coding.simplicity.md`
 ```
 
-O caminho do exemplo é relativo ao `AGENTS.md` do projeto. Ajuste-o conforme a localização dos arquivos. Para adotar todas as regras de um assunto, declare uma referência normativa ao arquivo de composição; para adotar apenas algumas, faça isso diretamente para os especialistas desejados. Siga também as dependências normativas aplicáveis dos arquivos escolhidos. O bloco acima é um modelo ilustrativo e não ativa suas referências neste README.
+O caminho do exemplo é relativo ao `AGENTS.md` do projeto. Ajuste-o conforme a localização dos arquivos. Para usar o roteamento por atividade de um assunto, declare uma referência normativa ao arquivo de composição; para adotar um subconjunto fixo, cite diretamente os especialistas desejados. Leia somente os especialistas cujos critérios forem atendidos e siga suas dependências normativas. O bloco acima é um modelo ilustrativo e não ativa suas referências neste README.
 
 Na adoção de arquitetura, confira a compatibilidade dos pré-requisitos com o
 projeto. O [agregador de arquitetura](architecture/AGENTS.architecture.md) exige
