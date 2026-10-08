@@ -123,6 +123,30 @@ O agregador multi-módulo a inclui pela norma de packages. Adaptação semântic
 localização de classes e orquestração de BFF podem seguir a arquitetura do
 projeto consumidor. A adoção das normas não exige criar camadas vazias.
 
+Em projetos que adotam essa topologia, o agregador de arquitetura também ativa
+a norma de unidade de negócio durante o desenvolvimento de comportamentos de
+domínio, inclusive quando a mudança começa em outra camada. Se o projeto compõe
+especialistas isolados, inclua uma referência normativa à norma no `AGENTS.md`
+que alcança esse trabalho. Por exemplo, com o catálogo em `.agents/`:
+
+```md
+# Instruções do projeto
+
+As referências abaixo são relativas a este arquivo. Como ponto de referência,
+considere a raiz do projeto.
+
+## Comportamentos de domínio
+
+Antes de analisar, planejar, implementar, modificar, testar ou revisar
+comportamentos de domínio neste projeto, inclusive quando a mudança começar
+em outra camada, leia e aplique:
+
+- `.agents/architecture/AGENTS.architecture.business-unit.md`
+```
+
+Essa referência também exige a leitura da base arquitetural. O exemplo só se
+aplica a projetos compatíveis com a topologia de camadas da norma.
+
 ### 2.3 Prompt sugerido para projetos existentes
 
 [Voltar ao sumário](#sumário)
@@ -179,7 +203,7 @@ selecionadas e excluídas e o resultado de cada validação. Limite as alteraç�
 
 [Voltar ao sumário](#sumário)
 
-As pastas agrupam as instruções por tema. Além das áreas de código e arquitetura, há normas para exceções, internacionalização, configuração, validação, auditoria e organização dos próprios arquivos `AGENTS`. Os arquivos em `global/` e `projects/` contêm regras de operação, identificação e versionamento que podem ser adotadas conforme o contexto.
+As pastas agrupam as instruções por tema. Além das áreas de código e arquitetura, há normas para exceções, internacionalização, configuração, validação, auditoria, organização dos próprios arquivos `AGENTS` e controle de escopo na execução de planos. Os arquivos em `global/` e `projects/` contêm regras de operação, identificação e versionamento que podem ser adotadas conforme o contexto.
 
 Um especialista local de conhecimento de projetos reais pode preservar o
 catálogo, os aliases e as convenções de um conjunto específico de projetos.

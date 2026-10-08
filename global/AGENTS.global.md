@@ -17,6 +17,13 @@ planejamento operacional em arquivo Markdown, leia e aplique:
 
 - `../agents/AGENTS.agents.development-plans.md`
 
+## Execução de planos de implementação
+
+Antes de executar um plano de implementação, inclusive quando estiver em uma
+story ou na conversa, leia e aplique:
+
+- `../agents/AGENTS.agents.plan-execution.md`
+
 ## Operação de normas
 
 - Antes de cada novo trabalho, a IA deve obrigatoriamente verificar quais

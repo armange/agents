@@ -18,8 +18,10 @@ policies, validações ou features de domínio, leia e aplique:
 
 - `AGENTS.architecture.business-rule-class.md`
 
-Antes de analisar, revisar, planejar ou organizar unidades de negócio ou a
-coesão entre responsabilidades do domínio, leia e aplique:
+Antes de analisar, planejar, implementar, modificar, testar ou revisar
+comportamentos de domínio, unidades de negócio ou a coesão entre
+responsabilidades do domínio, inclusive quando o trabalho começar em outra
+camada, leia e aplique:
 
 - `AGENTS.architecture.business-unit.md`
 
