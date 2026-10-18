@@ -22,6 +22,14 @@ requisições ou respostas HTTP, leia e aplique:
 
 - `AGENTS.http.audit-fields.md`
 
+## Exclusão física e desativação lógica
+
+Antes de analisar, revisar, planejar ou modificar contratos HTTP que excluam
+recursos, removam relações ou alterem recursos para um estado inativo, leia e
+aplique:
+
+- `AGENTS.http.deletion-semantics.md`
+
 ## Erros, ausência e conflitos
 
 Antes de analisar, revisar, planejar ou modificar contratos, endpoints ou
